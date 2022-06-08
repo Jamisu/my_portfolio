@@ -1,0 +1,24 @@
+.menu {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    background-color: #222222;
+    color: #FFFFFF;
+    filter: drop-shadow(5px 5px 10px rgba(71, 71, 71, 0.7));
+    margin: 0;
+    padding: 0;
+    z-index: 99999;
+}
+
+.menu a {
+    margin: 10px;
+}
+
+.menu svg {
+    color: #FFFF00;
+}
+
+.name-header {
+    color: #FFFF00;
+}
