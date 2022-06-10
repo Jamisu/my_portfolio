@@ -13,7 +13,7 @@ import { NavLink } from 'react-router-dom'
 import { useState } from 'react'
 
 const Menu = () => {
-  const [dayNightState, changeDayNightState] = useState('day')
+    const [dayNightState, changeDayNightState] = useState('day')
     const dayNightMode = (e) => {
       changeDayNightState((dayNightState==='day' && 'night') || 'day');
     }

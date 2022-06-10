@@ -18,10 +18,10 @@
     font-size: 2em;
     text-align: center;
     filter: drop-shadow(5px 5px 7px rgba(0, 0, 0, 0.7));
+    z-index: 99999;
 }
 
 .textArea.active {
-
     animation-fill-mode: forwards;
     animation: taFadeIn 0.5s;
     opacity: 1;

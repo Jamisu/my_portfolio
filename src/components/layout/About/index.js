@@ -4,8 +4,19 @@ import { useState } from 'react';
 
 const About = () => {
     const icons = [faReact, faJsSquare, faCss3, faHtml5, faSass, faPython, faJava, faAngular];
-    const aboutText = "These are My Skills:";
-    const [selectedIndex, setSelectedIndex] = useState(-1);
+    const aboutText = [
+    "React",
+    "JS",
+    "CSS",
+    "HTML",
+    "SASS",
+    "Python",
+    "Java",
+    "Angular",
+
+    "These are My Skills:"];
+
+    const [selectedIndex, setSelectedIndex] = useState(8);
 
     const clickHandler = (e) => {
         setSelectedIndex(e);
@@ -14,7 +25,7 @@ const About = () => {
     return(
     <div className='about'>
             <div className='textArea active'>
-                    <h>{aboutText}</h>
+                <p>{aboutText[selectedIndex]}</p>
             </div>
             <div className='iconContainer' >
                 {icons.map((icon, i) => <BigIcon key={i} ease="bounceIn" selectedId={selectedIndex} index={i} 

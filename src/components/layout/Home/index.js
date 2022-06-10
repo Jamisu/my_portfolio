@@ -4,7 +4,7 @@ import { faPersonHiking, faBiking, faPlateWheat, faCode, faMusic } from '@fortaw
 import { useState } from 'react';
 
 const Home = () => {
-    const icons = [faPersonHiking, faBiking, faPlateWheat, faCode, faMusic];
+    const icons = [faPersonHiking, faBiking, faCode, faPlateWheat, faMusic];
     const homeText1 = "Welcome to the Chaotec Portfolio!"
     const homeText2 = "And A Lot More"
     const homeText3 = "These are my hobbies:"
@@ -18,9 +18,9 @@ const Home = () => {
     return(
         <div className="home">
             <div className='textArea active'>
-                <h>{homeText1}</h>
-                <h>{homeText2}</h>
-                <h>{homeText3}</h>
+                <div>{homeText1}</div>
+                <div>{homeText2}</div>
+                <div>{homeText3}</div>
             </div>
             
             <div className='iconContainer' >
