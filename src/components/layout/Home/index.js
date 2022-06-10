@@ -2,7 +2,6 @@ import './index.scss'
 import BigIcon from '../../BigIcon'
 import { faPersonHiking, faBiking, faPlateWheat, faCode, faMusic } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react';
-import React from 'react'
 
 const Home = () => {
     const icons = [faPersonHiking, faBiking, faPlateWheat, faCode, faMusic];
@@ -10,11 +9,9 @@ const Home = () => {
     const homeText2 = "And A Lot More"
     const homeText3 = "These are my hobbies:"
 
-    const [selectedIndex, setSelectedIndex] = useState(1000);
+    const [selectedIndex, setSelectedIndex] = useState(-1);
 
     const clickHandler = (e) => {
-        console.log('e', e);
-        console.log('set e', selectedIndex);
         setSelectedIndex(e);
     }
 

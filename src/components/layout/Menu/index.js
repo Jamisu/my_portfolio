@@ -10,9 +10,14 @@ import {
   faToggleOn
 } from '@fortawesome/free-solid-svg-icons'
 import { NavLink } from 'react-router-dom'
-import { useLinkClickHandler } from 'react-router-dom';
+import { useState } from 'react'
 
 const Menu = () => {
+  const [dayNightState, changeDayNightState] = useState('day')
+    const dayNightMode = (e) => {
+      changeDayNightState((dayNightState==='day' && 'night') || 'day');
+    }
+
     return(
         <>
       <div className="menu">
@@ -86,7 +91,7 @@ const Menu = () => {
               </a>
             </div>
 
-            <div className='toggle'>
+            <div className={'toggle ' + dayNightState} onClick={dayNightMode}>
               <FontAwesomeIcon icon={faToggleOn} />
             </div>
           </div>

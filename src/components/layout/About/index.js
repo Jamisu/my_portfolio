@@ -1,15 +1,14 @@
 import BigIcon from '../../BigIcon'
 import { faReact, faJsSquare, faCss3, faHtml5, faSass, faPython, faJava, faAngular } from '@fortawesome/free-brands-svg-icons'
+import { useState } from 'react';
 
 const About = () => {
     const icons = [faReact, faJsSquare, faCss3, faHtml5, faSass, faPython, faJava, faAngular];
     const aboutText = "These are My Skills:";
+    const [selectedIndex, setSelectedIndex] = useState(-1);
 
-    let selectedIndex = 0;
     const clickHandler = (e) => {
-        selectedIndex = e;
-        console.log(selectedIndex);
-        return;
+        setSelectedIndex(e);
     }
 
     return(
@@ -18,7 +17,7 @@ const About = () => {
                     <h>{aboutText}</h>
             </div>
             <div className='iconContainer' >
-                {icons.map((icon, i) => <BigIcon key={i} ease="bounceIn" index={i} 
+                {icons.map((icon, i) => <BigIcon key={i} ease="bounceIn" selectedId={selectedIndex} index={i} 
                 onClickHandler={clickHandler} icon={icon} color="#ffff00" size='10x'/>)} 
             </div>
     </div>)
