@@ -1,0 +1,72 @@
+button {
+    background-color: transparent;
+    border:none;
+    cursor: pointer;
+}
+
+.bigIcon {
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin: 10px;
+    opacity: 0;
+    animation-fill-mode:none;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    transform-origin: center;
+    filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.7));
+}
+
+.bounceIn {
+    animation-fill-mode: forwards;
+    animation-name: bounce-in;
+    animation-timing-function: ease;
+}
+@keyframes bounce-in {
+    0% {
+        opacity: 0;
+        transform: scale(.3);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+    100% { opacity:1; transform: scale(1)}
+}
+
+@for $i from 1 through 10 {
+    .bigIcon._#{$i} {
+      animation-delay: #{calc($i / 12)}s;
+    }
+}
+
+
+svg.awe:hover,
+svg.awe:active {
+    animation-fill-mode: forwards;
+    animation: svGrow 0.2s;
+    opacity: 1;
+    transform: scale(1.1);
+    color: #00b7ff;
+    // filter: hue-rotate(120deg);
+}
+svg.awe {
+    animation-fill-mode: forwards;
+    animation: svShrink 0.2s;
+    opacity: 1;
+    transform: scale(1);
+    color: #ffff00;
+}
+
+@keyframes svGrow {
+    0% {
+        transform: scale(1);
+    }
+    100% { transform: scale(1.1)}
+}
+
+@keyframes svShrink {
+    0% {
+        transform: scale(1.1);
+    }
+    100% { transform: scale(1);}
+}

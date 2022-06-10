@@ -1,17 +1,13 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faReact, faPython, faJava, faJs, faHtml5, faCss3, faSass } from '@fortawesome/free-brands-svg-icons'
+import BigIcon from '../../BigIcon'
+import { faReact, faJs, faCss3, faHtml5, faSass, faPython, faJava } from '@fortawesome/free-brands-svg-icons'
 
 const About = () => {
+    const icons = [faReact, faJs, faCss3, faHtml5, faSass, faPython, faJava];
+
     return(
-    <div>
+    <div className='about'>
         <div className='iconContainer' >
-                <FontAwesomeIcon className="bigIcon bounceIn" icon={faReact} color="#ffff00" size='10x'/>
-                <FontAwesomeIcon className="bigIcon bounceIn" icon={faJs} color="#ffff00" size='10x'/>
-                <FontAwesomeIcon className="bigIcon bounceIn" icon={faCss3} color="#ffff00" size='10x'/>
-                <FontAwesomeIcon className="bigIcon bounceIn" icon={faHtml5} color="#ffff00" size='10x'/>    
-                <FontAwesomeIcon className="bigIcon bounceIn" icon={faSass} color="#ffff00" size='10x'/>    
-                <FontAwesomeIcon className="bigIcon bounceIn" icon={faPython} color="#ffff00" size='10x'/>    
-                <FontAwesomeIcon className="bigIcon bounceIn" icon={faJava} color="#ffff00" size='10x'/>    
+                {icons.map((icon, i) => <BigIcon ease="bounceIn" index={"_"+(i+1)} icon={icon} color="#ffff00" size='10x'/>)}    
             </div>
     </div>)
 }
