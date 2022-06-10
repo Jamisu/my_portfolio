@@ -10,6 +10,7 @@ import {
   faToggleOn
 } from '@fortawesome/free-solid-svg-icons'
 import { NavLink } from 'react-router-dom'
+import { useLinkClickHandler } from 'react-router-dom';
 
 const Menu = () => {
     return(
@@ -20,6 +21,7 @@ const Menu = () => {
             <NavLink exact="true" activeclassname="active" to="/">
               <FontAwesomeIcon icon={faHome} />
             </NavLink>
+
             <NavLink activeclassname="active" className="about-link" to="/about">
               <FontAwesomeIcon icon={faUser} />
             </NavLink>
@@ -40,6 +42,8 @@ const Menu = () => {
               <FontAwesomeIcon icon={faEnvelope} />
             </NavLink>
           </nav>
+
+          {/* --LINKS */}
 
           <div className='links'>
             <div className='link'>

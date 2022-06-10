@@ -13,7 +13,11 @@ button {
     animation-duration: 0.5s;
     animation-iteration-count: 1;
     transform-origin: center;
-    filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.7));
+    filter: drop-shadow(5px 5px 7px rgba(0, 0, 0, 0.7));
+}
+
+.bigIcon.active svg {
+    color: #00b7ff;
 }
 
 .bounceIn {
@@ -21,24 +25,6 @@ button {
     animation-name: bounce-in;
     animation-timing-function: ease;
 }
-@keyframes bounce-in {
-    0% {
-        opacity: 0;
-        transform: scale(.3);
-    }
-    50% {
-        opacity: 1;
-        transform: scale(1.1);
-    }
-    100% { opacity:1; transform: scale(1)}
-}
-
-@for $i from 1 through 10 {
-    .bigIcon._#{$i} {
-      animation-delay: #{calc($i / 12)}s;
-    }
-}
-
 
 svg.awe:hover,
 svg.awe:active {
@@ -55,6 +41,24 @@ svg.awe {
     opacity: 1;
     transform: scale(1);
     color: #ffff00;
+}
+
+@for $i from 1 through 10 {
+    .bigIcon._#{$i} {
+      animation-delay: #{calc($i / 12)}s;
+    }
+}
+
+@keyframes bounce-in {
+    0% {
+        opacity: 0;
+        transform: scale(.3);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+    100% { opacity:1; transform: scale(1)}
 }
 
 @keyframes svGrow {
