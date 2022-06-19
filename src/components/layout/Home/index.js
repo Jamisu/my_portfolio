@@ -5,11 +5,12 @@ import { useState } from 'react';
 
 const Home = () => {
     const icons = [faPersonHiking, faBiking, faCode, faPlateWheat, faMusic];
-    const homeText1 = "Welcome to the Chaotec Portfolio!"
-    const homeText2 = "And A Lot More"
-    const homeText3 = "These are my hobbies:"
+    const homeText1 = ["I Love Mountain Hicking", "Cycling is the best", "Coding is one of m Hobbies",
+     "Cooking is Important part of my life - Alchemy", "I am making electronic music since 1996", "Welcome to the Chaotec Portfolio!"]
+    const homeText2 = ["", "", "", "", "", "These are my hobbies:"]
 
-    const [selectedIndex, setSelectedIndex] = useState(-1);
+    const [selectedIndex, setSelectedIndex] = useState(5);
+    let textClass = 'textArea active';
 
     const clickHandler = (e) => {
         setSelectedIndex(e);
@@ -17,10 +18,9 @@ const Home = () => {
 
     return(
         <div className="home">
-            <div className='textArea active'>
-                <div>{homeText1}</div>
-                <div>{homeText2}</div>
-                <div>{homeText3}</div>
+            <div className={textClass}>
+                <div>{homeText1[selectedIndex]}</div>
+                <div>{homeText2[selectedIndex]}</div>
             </div>
             
             <div className='iconContainer' >
