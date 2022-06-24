@@ -4,7 +4,7 @@
     flex-direction: row;
     height: 60px;
     background-color: #222222;
-    filter: drop-shadow(5px 5px 10px rgba(71, 71, 71, 0.7));
+    filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.7));
     margin: 0;
     padding: 0;
     z-index: 100;
@@ -20,36 +20,8 @@
     justify-content: space-between;
 }
 
-.iconContainer {
-    display: flex; 
-    // flex-direction: row;
-    flex-wrap:wrap;
-    align-items: center;
-    position: absolute;
-    width: 70%;
-    height: 70%;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.navigation a {
-    margin: 0px 20px 0px 20px;
-}
-
-.links a {
-    margin: 0px 10px 0px 10px;
-}
-
 .menu a.active svg {
     color: #00b7ff;
-}
-
-.links a svg {
-    color: #FFFF00;
-    width: 35px;
-    height: 35px;
 }
 
 .navigation svg {
@@ -62,11 +34,23 @@
     }
 }
 
+.navigation a {
+    margin: 0px 20px 0px 20px;
+}
+
 .links {
     position: relative;
     display: flex;
     flex-direction: row;
     margin:0;
+    a {
+        margin: 0px 10px 0px 10px;
+        svg {
+            color: #FFFF00;
+            width: 35px;
+            height: 35px;
+        }
+    }
 }
 
 .toggle {

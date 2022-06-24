@@ -19,8 +19,8 @@ const Menu = () => {
     }
 
     return(
-        <>
-      <div className="menu">
+    <>
+      <div className={"menu " + dayNightState}>
         <div className='container'>
           <nav className="navigation">
             <NavLink exact="true" activeclassname="active" to="/">

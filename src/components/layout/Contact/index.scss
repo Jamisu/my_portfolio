@@ -1,0 +1,35 @@
+.map-container {
+    position: absolute;
+    width: 70%;
+    height: 70%;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.leaflet-container {
+    border: #000 solid 2px;
+    border-radius: 30px;
+    filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.7));
+    width: 100%;
+    height: 100%;
+  }
+
+.info-map {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #000;
+    border-radius: 10px;
+    z-index: 1000;
+    width: 267px;
+    padding: 10px;
+    margin: 20px;
+    color: #ffff00;
+    font-family: 'Neuropol', sans-serif;
+    font-size: 17px;
+    font-weight: 300;
+    opacity: 0.8;
+    filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.7));
+}
