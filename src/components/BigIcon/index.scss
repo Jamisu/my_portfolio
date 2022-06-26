@@ -5,8 +5,8 @@ button {
 }
 
 .bigIcon {
-    flex-grow: 1;
-    flex-shrink: 1;
+    // flex-grow: 1;
+    // flex-shrink: 1;
     margin: 10px;
     opacity: 0;
     animation-fill-mode:none;
@@ -32,9 +32,8 @@ svg.awe:active {
     animation: svGrow 0.2s;
     opacity: 1;
     transform: scale(1.1);
-    // color: #00b7ff;
-    // filter: hue-rotate(120deg);
 }
+
 svg.awe {
     animation-fill-mode: forwards;
     animation: svShrink 0.2s;

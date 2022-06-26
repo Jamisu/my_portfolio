@@ -14,6 +14,16 @@
             "image" : "rodo.jpg",
             "thumb" : "rodo_thumb.jpg",
             "caption" : "Both 'single' and \"double\" quotes"
+        },
+        {
+            "image" : "rodo.jpg",
+            "thumb" : "rodo_thumb.jpg",
+            "caption" : "Both 'single' and \"double\" quotes"
+        },
+        {
+            "image" : "rodo.jpg",
+            "thumb" : "rodo_thumb.jpg",
+            "caption" : "Both 'single' and \"double\" quotes"
         }
     ]
 }
