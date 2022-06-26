@@ -7,8 +7,8 @@ const About = () => {
     const icons = [faReact, faJsSquare, faCss3, faHtml5, faSass, faPython, faJava, faAngular];
     const languageText = ['React:', 'JS:', 'CSS:', 'HTML:', 'SASS:', 'Python:', 'Java:', 'Angular:'];
     const aboutText = [
-    "Medium Advanced",
-    "Medium Advanced",
+    "Intermediate",
+    "Intermediate",
     "Intermediate",
     "Advanced",
     "Intermediate",
@@ -26,7 +26,7 @@ const About = () => {
 
     return(
     <div className='about'>
-            <div className='textArea active'>
+            <div className='aboutTextArea'>
                 <div>{languageText[selectedIndex]}</div>
                 <div>{aboutText[selectedIndex]}</div>
             </div>

@@ -1,0 +1,19 @@
+{
+    "images" : [
+        {
+            "image" : "rodo.jpg",
+            "thumb" : "rodo_thumb.jpg",
+            "caption" : "\"Caption with double quotes\""
+        },
+        {
+            "image" : "rodo.jpg",
+            "thumb" : "rodo_thumb.jpg",
+            "caption" : "'Caption' with single quotes"
+        },
+        {
+            "image" : "rodo.jpg",
+            "thumb" : "rodo_thumb.jpg",
+            "caption" : "Both 'single' and \"double\" quotes"
+        }
+    ]
+}

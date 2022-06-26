@@ -5,11 +5,11 @@ import { useState } from 'react';
 
 const Home = () => {
     const icons = [faPersonHiking, faBiking, faCode, faKitchenSet, faMusic];
-    const homeText1 = ["I Love Mountain Hicking", "Cycling is the best", "Coding is one of m Hobbies",
-     "Cooking is Important part of my life - Alchemy", "I am making electronic music since 1996", "Welcome to the Chaotec Portfolio!"];
+    const homeText1 = ["I Love Mountain Hicking", "Cycling, cycling, ever cycling", "Coding is good for your brain",
+     "Cooking is like an an Alchemy", "Music production is the finest of the arts", "Welcome to the Chaotec Portfolio!"];
 
     const [selectedIndex, setSelectedIndex] = useState(5);
-    let textClass = 'textArea fadeIn';
+    let textClass = 'homeTextArea';
 
     const clickHandler = (e) => {
         setSelectedIndex(e);
@@ -17,7 +17,7 @@ const Home = () => {
 
     return(
         <div className="home">
-            <div className="description fadeIn">
+            <div className="description">
                 <div>
                 <br/>
                 I am an application programmer with thirteen years of experience<br/>
