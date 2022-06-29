@@ -40,11 +40,11 @@ const Gallery = () => {
 
     }
 
-    return(<div className='gallery'>
-        {!contentData ? (
+    return(
+        !contentData ? (
             <div>Loading ...</div>
-          ) : (
-            <Fragment>
+          ) : (<div className='gallery'>
+
                 <div className='arrows'>
                     <div className='arrowBackward'>
                         <BigIcon key={0} ease="bounceIn" selectedId={-1} index={0} 
@@ -54,18 +54,17 @@ const Gallery = () => {
                         <BigIcon key={1} ease="bounceIn" selectedId={-1} index={1} 
                         onClickHandler={clickHandler} onHoverHandler={e=>e} icon={faCircleChevronRight} color="#ffff00" size='10x'/>
                     </div>
-                </div>
+                </div> 
                 
                 <div className='imageLayer'>
                     <img src={'./images/' + contentData.images[0].image} alt="project" />
                 </div>
+
                 <div className='thumbLayer'>
                     {contentData.images.map((img, i) => <img src={'./images/' + contentData.images[0].thumb} alt="project" />)}
                 </div>
-            </Fragment>
-          )}
-    </div>
-        
+            </div>
+          )        
     )
 }
 
