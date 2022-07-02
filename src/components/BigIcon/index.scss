@@ -43,7 +43,7 @@ svg.awe {
 }
 
 @for $i from 1 through 10 {
-    .bigIcon._#{$i} {
+    ._#{$i} {
       animation-delay: #{calc($i / 12)}s;
     }
 }

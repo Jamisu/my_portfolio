@@ -1,6 +1,7 @@
 import './index.scss'
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../../hooks/useImagePreloader'
+// import Loader from 'react-loaders'
 import BigIcon from '../../BigIcon'
 import { faCircleChevronLeft, faCircleChevronRight } from '@fortawesome/free-solid-svg-icons'
 
@@ -16,7 +17,7 @@ const Gallery = () => {
     const [currentImage, setCurrent] = useState(0);
     const [animationClass, setAnimationClass] = useState('imgFadeIn');
     const [buttonsActive, enableButtons] = useState(true);
-    const [hoveredThumb, setHoveredThumb] = useState(-1);
+  
     let animTimeout;
 
     const url = './images/gallery.json';
@@ -28,6 +29,10 @@ const Gallery = () => {
     },[url]);
 
     const setInitialData = (data) => {
+        const tempDelay = setInterval(delayedInit, 2000, data);
+        // setData(data);
+    }
+    const delayedInit = (data) => {
         setData(data);
     }
 
@@ -73,8 +78,16 @@ const Gallery = () => {
 
     return(
         !contentData ? (
-            <div>Loading ...</div>
-          ) : (<div className='gallery'>
+            <div className='preloader'>
+                {/* <Loader type="line-scale-pulse-out-rapid" /> */}
+                <div className='preloaderCss'>
+                    <div/>
+                    <div/>
+                    <div/>
+                </div>
+            </div>
+          ) : (
+            <div className='gallery'>
 
                 <div className='arrows'>
                     <div className={'arrowBackward ' + buttonsActive}>
@@ -94,11 +107,11 @@ const Gallery = () => {
                 <div className='thumbLayer'>
                 { console.log('ret currentImage', currentImage) }
                     {contentData.images.map((img, i) => 
-                        <div className={'thumb ' + ((currentImage === i) && 'active')} key={i}>
+                        <div className={'thumb ' + ((currentImage === i) && 'active') } key={i}>
                             { console.log('ret i, cimg, act:', i, currentImage, (currentImage === i) && 'active') }
-                            <img src={'./images/' + img.thumb} id={i} alt="project" onClick={thumbClick}/>
+                            <img className={'_' + i} src={'./images/' + img.thumb} id={i} alt="project" onClick={thumbClick}/>
                         </div>
-                        )}
+                    )}
                 </div>
             </div>
           )        
