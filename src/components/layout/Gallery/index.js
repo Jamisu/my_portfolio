@@ -14,10 +14,11 @@ const Gallery = () => {
 
     const [contentData, setData] = useState();
     const [currentImage, setCurrent] = useState(0);
-    let thumbImages = [];
-    let fullImages = [];
-    let animating = false;
-    let img;
+    const [animationClass, setAnimationClass] = useState('imgFadeIn');
+    const [buttonsActive, enableButtons] = useState(true);
+    const [hoveredThumb, setHoveredThumb] = useState(-1);
+    let animTimeout;
+
     const url = './images/gallery.json';
 
     useEffect(() => {
@@ -27,17 +28,47 @@ const Gallery = () => {
     },[url]);
 
     const setInitialData = (data) => {
-        console.log(contentData);
         setData(data);
-        console.log(data);
     }
 
     const clickHandler = (e) => {
-
+        let current = 0;
+        // if (buttonsActive === true) {
+            if (e === 0) {
+                if (currentImage > 0) {
+                    current = currentImage-1;
+                } else {
+                    current = contentData.images.length-1;
+                }
+            } else {
+                if (currentImage < contentData.images.length-1) {
+                    current = currentImage+1;
+                }
+            }
+            startChange(current);
+        // }
     }
 
-    function imageLoader() {
+    const startChange = (current) => {
+        console.log('cuurrent', current);
+        setCurrent(current);
+        enableButtons(false);
+        setAnimationClass('imgFadeOut');
+        animTimeout = setTimeout(endChange, 300);
+    }
 
+    const endChange = () => {
+       setAnimationClass('imgFadeIn');
+       animTimeout = setTimeout(activateButtons, 500);
+    }
+
+    const activateButtons = () => {
+        enableButtons(true);
+    }
+
+    const thumbClick = (e) => {
+        const id = Number(e.target.id);
+        id !== currentImage && startChange(id);
     }
 
     return(
@@ -46,22 +77,28 @@ const Gallery = () => {
           ) : (<div className='gallery'>
 
                 <div className='arrows'>
-                    <div className='arrowBackward'>
-                        <BigIcon key={0} ease="bounceIn" selectedId={-1} index={0} 
-                        onClickHandler={clickHandler} onHoverHandler={e=>e} icon={faCircleChevronLeft} color="#ffff00" size='10x'/>
+                    <div className={'arrowBackward ' + buttonsActive}>
+                        <BigIcon key={0} ease="bounceIn" selectedId={-1} index={0}
+                        onClickHandler={clickHandler} onHoverHandler={e=>e} icon={faCircleChevronLeft} color="#ffff00" size='6x'/>
                     </div>
-                    <div className='arrowForward'>
-                        <BigIcon key={1} ease="bounceIn" selectedId={-1} index={1} 
-                        onClickHandler={clickHandler} onHoverHandler={e=>e} icon={faCircleChevronRight} color="#ffff00" size='10x'/>
+                    <div className={'arrowForward ' + buttonsActive}>
+                        <BigIcon key={1} ease="bounceIn" selectedId={-1} index={1}
+                        onClickHandler={clickHandler} onHoverHandler={e=>e} icon={faCircleChevronRight} color="#ffff00" size='6x'/>
                     </div>
                 </div> 
                 
-                <div className='imageLayer'>
-                    <img src={'./images/' + contentData.images[0].image} alt="project" />
+                <div className={'imageLayer ' + animationClass}>
+                    <img src={'./images/' + contentData.images[currentImage].image} alt="project" />
                 </div>
 
                 <div className='thumbLayer'>
-                    {contentData.images.map((img, i) => <img src={'./images/' + contentData.images[0].thumb} alt="project" />)}
+                { console.log('ret currentImage', currentImage) }
+                    {contentData.images.map((img, i) => 
+                        <div className={'thumb ' + ((currentImage === i) && 'active')} key={i}>
+                            { console.log('ret i, cimg, act:', i, currentImage, (currentImage === i) && 'active') }
+                            <img src={'./images/' + img.thumb} id={i} alt="project" onClick={thumbClick}/>
+                        </div>
+                        )}
                 </div>
             </div>
           )        
