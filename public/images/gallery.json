@@ -3,27 +3,33 @@
         {
             "image" : "rodo.jpg",
             "thumb" : "rodo_thumb.jpg",
-            "caption" : "\"Caption with double quotes\""
+            "desc" : "",
+            "tech" : "preact.js, html, css, python"
+        },
+        {
+            "image" : "webckm.jpg",
+            "thumb" : "webckm_thumb.jpg",
+            "desc" : "",
+            "tech" : "react, redux, S3"
+        },
+        {
+            "image" : "video.jpg",
+            "thumb" : "video_thumb.jpg",
+            "desc" : "",
+            "tech" : "ImaSdk, vanilla js, pureMVC"
+        },
+
+        {
+            "image" : "rodo.jpg",
+            "thumb" : "rodo_thumb.jpg",
+            "desc" : "",
+            "tech" : "Adobe Flash Standalone, AS3"
         },
         {
             "image" : "rodo.jpg",
             "thumb" : "rodo_thumb.jpg",
-            "caption" : "'Caption' with single quotes"
-        },
-        {
-            "image" : "rodo.jpg",
-            "thumb" : "rodo_thumb.jpg",
-            "caption" : "Both 'single' and \"double\" quotes"
-        },
-        {
-            "image" : "rodo.jpg",
-            "thumb" : "rodo_thumb.jpg",
-            "caption" : "Both 'single' and \"double\" quotes"
-        },
-        {
-            "image" : "rodo.jpg",
-            "thumb" : "rodo_thumb.jpg",
-            "caption" : "Both 'single' and \"double\" quotes"
+            "desc" : "",
+            "tech" : "Adobe Flash, AS3, HTML"
         }
     ]
 }

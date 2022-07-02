@@ -56,15 +56,16 @@ const Gallery = () => {
 
     const startChange = (current) => {
         console.log('cuurrent', current);
-        setCurrent(current);
+        
         enableButtons(false);
         setAnimationClass('imgFadeOut');
-        animTimeout = setTimeout(endChange, 300);
+        animTimeout = setTimeout(endChange, 300, current);
     }
 
-    const endChange = () => {
-       setAnimationClass('imgFadeIn');
-       animTimeout = setTimeout(activateButtons, 500);
+    const endChange = (current) => {
+        setCurrent(current);
+        setAnimationClass('imgFadeIn');
+        animTimeout = setTimeout(activateButtons, 500);
     }
 
     const activateButtons = () => {
