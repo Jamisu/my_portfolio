@@ -1,0 +1,35 @@
+{
+    "images" : [
+        {
+            "image" : "rodo.jpg",
+            "thumb" : "rodo_thumb.jpg",
+            "desc" : "",
+            "tech" : "preact.js, html, css, python"
+        },
+        {
+            "image" : "webckm.jpg",
+            "thumb" : "webckm_thumb.jpg",
+            "desc" : "",
+            "tech" : "react, redux, S3"
+        },
+        {
+            "image" : "video.jpg",
+            "thumb" : "video_thumb.jpg",
+            "desc" : "",
+            "tech" : "ImaSdk, vanilla js, pureMVC"
+        },
+
+        {
+            "image" : "mhk.jpg",
+            "thumb" : "mhk_thumb.jpg",
+            "desc" : "",
+            "tech" : "Adobe Flash Standalone, AS3"
+        },
+        {
+            "image" : "flash.jpg",
+            "thumb" : "flash_thumb.jpg",
+            "desc" : "",
+            "tech" : "Adobe Flash, AS3, HTML"
+        }
+    ]
+}
