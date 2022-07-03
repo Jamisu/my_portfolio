@@ -103,13 +103,13 @@ const Gallery = () => {
                 
                 <div className={'imageLayer ' + animationClass}>
                     <img src={'./images/' + contentData.images[currentImage].image} alt="project" />
+                    <div className='desc'>DESC</div>
+                    <div className='tech'>tech</div>
                 </div>
 
                 <div className='thumbLayer'>
-                { console.log('ret currentImage', currentImage) }
                     {contentData.images.map((img, i) => 
                         <div className={'thumb ' + ((currentImage === i) && 'active') } key={i}>
-                            { console.log('ret i, cimg, act:', i, currentImage, (currentImage === i) && 'active') }
                             <img className={'_' + i} src={'./images/' + img.thumb} id={i} alt="project" onClick={thumbClick}/>
                         </div>
                     )}

@@ -10,7 +10,7 @@
             "image" : "webckm.jpg",
             "thumb" : "webckm_thumb.jpg",
             "desc" : "",
-            "tech" : "react, redux, S3"
+            "tech" : "react, redux, AWS"
         },
         {
             "image" : "video.jpg",
@@ -20,14 +20,14 @@
         },
 
         {
-            "image" : "rodo.jpg",
-            "thumb" : "rodo_thumb.jpg",
+            "image" : "mhk.jpg",
+            "thumb" : "mhk_thumb.jpg",
             "desc" : "",
             "tech" : "Adobe Flash Standalone, AS3"
         },
         {
-            "image" : "rodo.jpg",
-            "thumb" : "rodo_thumb.jpg",
+            "image" : "flash.jpg",
+            "thumb" : "flash_thumb.jpg",
             "desc" : "",
             "tech" : "Adobe Flash, AS3, HTML"
         }
