@@ -103,8 +103,19 @@ const Gallery = () => {
                 
                 <div className={'imageLayer ' + animationClass}>
                     <img src={'./images/' + contentData.images[currentImage].image} alt="project" />
-                    <div className='desc'>DESC</div>
-                    <div className='tech'>tech</div>
+                    <div className='description'>
+                        <div className='txtCont1'>
+                            <div className='title'>Project: </div>
+                            <div className='desc'>{contentData.images[currentImage].desc}</div>
+                        </div>
+                        
+                        <div className='txtCont2'>
+                            <div className='title'>Technologies: </div>
+                            <div className='desc'>{contentData.images[currentImage].tech}</div>
+                        </div>
+                        
+                    </div>
+                    
                 </div>
 
                 <div className='thumbLayer'>

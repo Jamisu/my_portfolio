@@ -40,42 +40,67 @@
 .imageLayer {
     display: flex;
     top: 10%;
-    // flex-direction: column;
     justify-content: center;
-    // align-items: center;
-    // position: absolute;
     width: 100%;
     height: 100%;
     position: fixed;
-    // top: 50%;
-    // left: 50%;
-    // transform: translate(-50%, -50%);
-    // z-index: 3;
-    
 }
 
 .imageLayer img {
     position:fixed;
-    // flex-shrink: 1;
-    // top: 50%;
-    // transform: translateY(-50%);
     aspect-ratio: 16 / 9;
     max-width:70%;
     border-radius: 20px;
-    //width: 1280px;
-    //height: 720px;
     filter: drop-shadow(5px 5px 7px rgba(0, 0, 0, 0.7));
     border: #000 solid 2px;
 }
 
-.imageLayer.imgFadeIn img {
+.imageLayer .description {
+    display: flex;
+    position: fixed;
+    max-width:70%;
+    border-radius: 20px;
+    filter: drop-shadow(5px 5px 7px rgba(0, 0, 0, 0.7));
+    border: #000 solid 2px;
+    
+    text-align: left;
+    width: auto;
+    height: 40px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+
+    font-family: 'Joy Multiplication', sans-serif;
+    letter-spacing: 1.5px;
+    line-height: 20px;
+    color:#ffff00;
+    filter: drop-shadow(5px 5px 7px rgba(0, 0, 0, 0.7));
+    z-index: 1;
+}
+
+.txtCont2 {
+    margin-left: 30px;;
+}
+
+.description .desc {
+    color: #00b7ff;
+}
+
+.description .txtCont .title {
+    display: inline-block;
+}
+
+.description .txtCont .desc {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.imageLayer.imgFadeIn  {
     animation-fill-mode: forwards;
     animation: imgFadeIn 0.5s;
     opacity: 1;
     transform: scale(1);
 }
-
-.imageLayer.imgFadeOut img {
+.imageLayer.imgFadeOut  {
     animation-fill-mode: forwards;
     animation: imgFadeOut 0.3s;
     opacity: 0;

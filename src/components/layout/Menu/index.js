@@ -12,10 +12,14 @@ import {
 import { NavLink } from 'react-router-dom'
 import { useState } from 'react'
 
-const Menu = () => {
-    const [dayNightState, changeDayNightState] = useState('day')
+const Menu = (props) => {
+    const onSwitch = props.onSwitch;
+    let dayNightState = 'day';
     const dayNightMode = (e) => {
-      changeDayNightState((dayNightState==='day' && 'night') || 'day');
+      console.log('dayNightState', dayNightState);
+      dayNightState = (dayNightState==='day' && 'night') || 'day';
+      console.log('dayNightState', dayNightState);
+      onSwitch(dayNightState);
     }
 
     return(
