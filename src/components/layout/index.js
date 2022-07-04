@@ -4,19 +4,21 @@ import Menu from '../layout/Menu'
 import Footer from '../layout/Footer'
 
 const Layout = () => {
-    const [mode, setDayNightState] = useState('day');
-    const onClickCallback = (mode) => {
-        console.log(mode);
-        setDayNightState(mode);
+    const [dayMode, setDayNightState] = useState('day');
+    const onSwitch = (day) => {
+        console.log('currently', dayMode);
+        setDayNightState(day);
+        console.log('setting', day);
+        
     }
     return(
         <div className="App">
-            <Menu onSwitch={onClickCallback}/>
+            <Menu onSwitch={onSwitch} dayMode={dayMode}/>
             <div className="page">
-                {console.log('mode', mode)}
-                <Outlet context={mode}/>
+                {/* <Outlet context={dayMode}/> */}
+                <Outlet context={[dayMode, setDayNightState]}/>
             </div>
-            <Footer mode={mode}/>
+            <Footer mode={dayMode}/>
         </div>
         )
 }

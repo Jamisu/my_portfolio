@@ -2,8 +2,10 @@ import './index.scss'
 import BigIcon from '../../BigIcon'
 import { faReact, faJsSquare, faCss3, faHtml5, faSass, faPython, faJava, faAngular } from '@fortawesome/free-brands-svg-icons'
 import { useState } from 'react';
+import { useOutletContext } from "react-router-dom";
 
 const About = () => {
+    const [dayMode] = useOutletContext();
     const icons = [faReact, faJsSquare, faCss3, faHtml5, faSass, faPython, faJava, faAngular];
     const languageText = ['React:', 'JS:', 'CSS:', 'HTML:', 'SASS:', 'Python:', 'Java:', 'Angular:'];
     const aboutText = [

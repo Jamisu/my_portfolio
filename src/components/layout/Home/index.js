@@ -2,8 +2,10 @@ import './index.scss'
 import BigIcon from '../../BigIcon'
 import { faKitchenSet, faPersonHiking, faBiking, faPlateWheat, faCode, faMusic } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react';
+import { useOutletContext } from "react-router-dom";
 
 const Home = () => {
+    const [dayMode] = useOutletContext();
     const icons = [faPersonHiking, faBiking, faCode, faKitchenSet, faMusic];
     const homeText1 = ["I Love Mountain Hicking", "Cycling, cycling, ever cycling", "Coding is good for your brain",
      "Cooking is like an an Alchemy", "Music production is the finest of the arts", "Welcome to the Chaotec Portfolio!"];
@@ -12,6 +14,7 @@ const Home = () => {
     let textClass = 'homeTextArea';
 
     const clickHandler = (e) => {
+        console.log('HOME dayMode', dayMode);
         setSelectedIndex(e);
     }
 

@@ -1,17 +1,12 @@
 import './index.scss'
 import React, { useState, useEffect } from 'react';
 import '../../../hooks/useImagePreloader'
-// import Loader from 'react-loaders'
 import BigIcon from '../../BigIcon'
 import { faCircleChevronLeft, faCircleChevronRight } from '@fortawesome/free-solid-svg-icons'
+import { useOutletContext } from "react-router-dom";
 
 const Gallery = () => {
-
-    // JSON loader ??in layout??
-    // thumb display -> serialThumbLoader
-    // main container
-    //      slider -> imageLoader -> preloader
-    //          zoomOnClick + description
+    const [dayMode] = useOutletContext();
 
     const [contentData, setData] = useState();
     const [currentImage, setCurrent] = useState(0);

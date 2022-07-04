@@ -1,7 +1,9 @@
 import './index.scss'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import { useOutletContext } from "react-router-dom";
 
 const Contact = () => {
+    const [dayMode] = useOutletContext();
     return(<div className='map-container'>
 
             <div className="info-map">
