@@ -6,7 +6,7 @@ const Contact = () => {
     const [dayMode] = useOutletContext();
     return(<div className='map-container'>
 
-            <div className="info-map">
+            <div className={"info-map " + dayMode}>
                 Adam Pocentek<br/><br/>
                 Junior FullStack Developer<br/><br/>
                 690 292 060<br/><br/>

@@ -22,5 +22,19 @@
     z-index: 1;
 }
 
+.about.night {
+    .aboutTextArea {
+        color:#00b7ff;
+    }
+
+    .bigIcon svg {
+        color:#00b7ff;
+    }
+
+    .bigIcon.active svg {
+        color: #ffff00;
+    }
+}
+
 
 

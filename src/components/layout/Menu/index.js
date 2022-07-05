@@ -22,6 +22,7 @@ const Menu = (props) => {
       let localState = (dayNightState === 'day' && 'night') || 'day'
       setDayNightState(localState);
       onSwitch(localState);
+      document.body.className = localState;
     }
 
     return(

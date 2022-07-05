@@ -13,9 +13,9 @@ const Layout = () => {
     }
     return(
         <div className="App">
+            {console.log('dayMode', dayMode)}
             <Menu onSwitch={onSwitch} dayMode={dayMode}/>
             <div className="page">
-                {/* <Outlet context={dayMode}/> */}
                 <Outlet context={[dayMode, setDayNightState]}/>
             </div>
             <Footer mode={dayMode}/>

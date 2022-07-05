@@ -33,7 +33,6 @@ const Gallery = () => {
 
     const clickHandler = (e) => {
         let current = 0;
-        // if (buttonsActive === true) {
             if (e === 0) {
                 if (currentImage > 0) {
                     current = currentImage-1;
@@ -46,7 +45,6 @@ const Gallery = () => {
                 }
             }
             startChange(current);
-        // }
     }
 
     const startChange = (current) => {
@@ -75,22 +73,20 @@ const Gallery = () => {
     return(
         !contentData ? (
             <div className='preloader'>
-                {/* <Loader type="line-scale-pulse-out-rapid" /> */}
-                <div className='preloaderCss'>
+                <div className={'preloaderCss ' + dayMode}>
                     <div/>
                     <div/>
                     <div/>
                 </div>
             </div>
           ) : (
-            <div className='gallery'>
-
+            <div className={'gallery ' + dayMode}>
                 <div className='arrows'>
-                    <div className={'arrowBackward ' + buttonsActive}>
+                    <div className={'arrowBackward ' + buttonsActive + ' ' + dayMode}>
                         <BigIcon key={0} ease="bounceIn" selectedId={-1} index={0}
                         onClickHandler={clickHandler} onHoverHandler={e=>e} icon={faCircleChevronLeft} color="#ffff00" size='6x'/>
                     </div>
-                    <div className={'arrowForward ' + buttonsActive}>
+                    <div className={'arrowForward ' + buttonsActive + ' ' + dayMode}>
                         <BigIcon key={1} ease="bounceIn" selectedId={-1} index={1}
                         onClickHandler={clickHandler} onHoverHandler={e=>e} icon={faCircleChevronRight} color="#ffff00" size='6x'/>
                     </div>
@@ -108,7 +104,6 @@ const Gallery = () => {
                             <div className='title'>Technologies: </div>
                             <div className='desc'>{contentData.images[currentImage].tech}</div>
                         </div>
-                        
                     </div>
                     
                 </div>

@@ -18,6 +18,24 @@
     z-index: 1;
 }
 
+.home.night {
+    .description {
+        color:#00b7ff;
+    }
+
+    .homeTextArea {
+        color:#00b7ff;
+    }
+
+    .bigIcon svg {
+        color:#00b7ff;
+    }
+
+    .bigIcon.active svg {
+        color: #ffff00;
+    }
+}
+
 .iconContainer {
     display: flex; 
     flex-wrap: wrap;

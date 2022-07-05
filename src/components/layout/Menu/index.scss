@@ -10,6 +10,30 @@
     z-index: 100;
 }
 
+.menu.night {
+    background-color: #333333;
+
+    a.active svg {
+        color: #FFFF00;
+    }
+
+    svg {
+        color: #00b7ff;
+        &:hover {
+            color: #FFFF00;
+        }
+    }
+
+    .links a svg {
+        color: #00b7ff;
+    }
+
+    .toggle svg {
+        color: #00b7ff;
+        transform: scaleX(-1);
+    }
+}
+
 .container {
     position: relative;
     width: 100%;
@@ -33,7 +57,6 @@
         color: #00b7ff;
     }
 }
-
 .navigation a {
     margin: 0px 20px 0px 20px;
 }
@@ -61,11 +84,6 @@
         width: 35px;
         height: 35px;
     }
-}
-
-.toggle.night svg {
-    color: #00b7ff;
-    transform: scale(-1);
 }
 
 .name-header {

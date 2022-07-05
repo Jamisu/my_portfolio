@@ -27,12 +27,12 @@ const About = () => {
     }
 
     return(
-    <div className='about'>
-            <div className='aboutTextArea'>
+    <div className={'about ' + dayMode}>
+            <div className={'aboutTextArea'}>
                 <div>{languageText[selectedIndex]}</div>
                 <div>{aboutText[selectedIndex]}</div>
             </div>
-            <div className='iconContainer' >
+            <div className={'iconContainer'} >
                 {icons.map((icon, i) => <BigIcon key={i} ease="bounceIn" selectedId={selectedIndex} index={i} 
                 onClickHandler={e=>e} onHoverHandler={onHoverHandler} icon={icon} color="#ffff00" size='10x'/>)} 
             </div>

@@ -7,6 +7,9 @@
     background-color: rgb(5, 5, 5);
     color: #ffff00;
     z-index: 100;
+    &.night {
+        color: #00fbff;
+    }
 }
 
 

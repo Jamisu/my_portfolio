@@ -11,15 +11,13 @@ const Home = () => {
      "Cooking is like an an Alchemy", "Music production is the finest of the arts", "Welcome to the Chaotec Portfolio!"];
 
     const [selectedIndex, setSelectedIndex] = useState(5);
-    let textClass = 'homeTextArea';
 
     const clickHandler = (e) => {
-        console.log('HOME dayMode', dayMode);
         setSelectedIndex(e);
     }
 
     return(
-        <div className="home">
+        <div className={"home " + dayMode}>
             <div className="description">
                 <div>
                 <br/>
@@ -38,7 +36,7 @@ const Home = () => {
                 onClickHandler={clickHandler} onHoverHandler={e=>e} icon={icon} color="#ffff00" size='10x'/>)} 
             </div>
 
-            <div className={textClass}>
+            <div className='homeTextArea'>
                 <div>{homeText1[selectedIndex]}</div>
             </div>
         </div>
