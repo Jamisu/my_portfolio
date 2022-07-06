@@ -1,6 +1,5 @@
 import './index.scss'
 import React, { useState, useEffect } from 'react';
-import '../../../hooks/useImagePreloader'
 import BigIcon from '../../BigIcon'
 import { faCircleChevronLeft, faCircleChevronRight } from '@fortawesome/free-solid-svg-icons'
 import { useOutletContext } from "react-router-dom";
@@ -11,10 +10,9 @@ const Gallery = () => {
     const [contentData, setData] = useState();
     const [currentImage, setCurrent] = useState(0);
     const [animationClass, setAnimationClass] = useState('imgFadeIn');
-    const [buttonsActive, enableButtons] = useState(true);
   
     let animTimeout;
-
+    const baseUrl = './images/';
     const url = './images/gallery.json';
 
     useEffect(() => {
@@ -24,10 +22,48 @@ const Gallery = () => {
     },[url]);
 
     const setInitialData = (data) => {
-        const tempDelay = setInterval(delayedInit, 2000, data);
-        // setData(data);
+        const urlList = [];
+        data.images.map((img, i) => {
+            urlList.push(baseUrl +img.image);
+            urlList.push(baseUrl +img.thumb);
+            return {}
+        });
+        preloadAllImages(data, urlList);
     }
-    const delayedInit = (data) => {
+
+    const preloadAllImages = (data, urlList) => {
+        async function preload() {
+                console.log('PRELOAD');
+            
+                const imagesPromiseList = [];
+                for (const i of urlList) {
+                    imagesPromiseList.push(preloadImage(i))
+                }
+            
+                await Promise.all(imagesPromiseList)
+                
+                initialise(data);
+            }
+        
+            preload();
+    }
+
+    const preloadImage = (src) => {
+        console.log('PRELOAD image', src);
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.onload = function() {
+            resolve(img);
+          }
+          img.onerror = img.onabort = function() {
+            reject(src);
+          }
+          img.src = src;
+        })
+    }
+
+    const initialise = (data) => {
+        console.log('INIT');
         setData(data);
     }
 
@@ -49,8 +85,6 @@ const Gallery = () => {
 
     const startChange = (current) => {
         console.log('cuurrent', current);
-        
-        enableButtons(false);
         setAnimationClass('imgFadeOut');
         animTimeout = setTimeout(endChange, 300, current);
     }
@@ -58,11 +92,6 @@ const Gallery = () => {
     const endChange = (current) => {
         setCurrent(current);
         setAnimationClass('imgFadeIn');
-        animTimeout = setTimeout(activateButtons, 500);
-    }
-
-    const activateButtons = () => {
-        enableButtons(true);
     }
 
     const thumbClick = (e) => {
@@ -80,20 +109,20 @@ const Gallery = () => {
                 </div>
             </div>
           ) : (
-            <div className={'gallery ' + dayMode}>
+            <div className={baseUrl + dayMode}>
                 <div className='arrows'>
-                    <div className={'arrowBackward ' + buttonsActive + ' ' + dayMode}>
+                    <div className={'arrowBackward ' + dayMode}>
                         <BigIcon key={0} ease="bounceIn" selectedId={-1} index={0}
                         onClickHandler={clickHandler} onHoverHandler={e=>e} icon={faCircleChevronLeft} color="#ffff00" size='6x'/>
                     </div>
-                    <div className={'arrowForward ' + buttonsActive + ' ' + dayMode}>
+                    <div className={'arrowForward ' + dayMode}>
                         <BigIcon key={1} ease="bounceIn" selectedId={-1} index={1}
                         onClickHandler={clickHandler} onHoverHandler={e=>e} icon={faCircleChevronRight} color="#ffff00" size='6x'/>
                     </div>
                 </div> 
                 
                 <div className={'imageLayer ' + animationClass}>
-                    <img src={'./images/' + contentData.images[currentImage].image} alt="project" />
+                    <img src={baseUrl + contentData.images[currentImage].image} alt="project" />
                     <div className='description'>
                         <div className='txtCont1'>
                             <div className='title'>Project: </div>
@@ -111,7 +140,7 @@ const Gallery = () => {
                 <div className='thumbLayer'>
                     {contentData.images.map((img, i) => 
                         <div className={'thumb ' + ((currentImage === i) && 'active') } key={i}>
-                            <img className={'_' + i} src={'./images/' + img.thumb} id={i} alt="project" onClick={thumbClick}/>
+                            <img className={'_' + i} src={baseUrl + img.thumb} id={i} alt="project" onClick={thumbClick}/>
                         </div>
                     )}
                 </div>
