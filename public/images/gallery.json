@@ -1,6 +1,12 @@
 {
     "images" : [
         {
+            "image" : "mhk.jpg",
+            "thumb" : "mhk_thumb.jpg",
+            "desc" : "Twenty touchscreen multimedia stands for History Museum Of Crakow",
+            "tech" : "Adobe Flash Standalone, AS3"
+        },
+        {
             "image" : "rodo.jpg",
             "thumb" : "rodo_thumb.jpg",
             "desc" : "Rodo vendors consent panel",
@@ -17,13 +23,6 @@
             "thumb" : "video_thumb.jpg",
             "desc" : "Custom Onet video player (discontinued)",
             "tech" : "ImaSdk, vanilla js, pureMVC"
-        },
-
-        {
-            "image" : "mhk.jpg",
-            "thumb" : "mhk_thumb.jpg",
-            "desc" : "Twenty touchscreen multimedia stands in History Museum Of Crakow",
-            "tech" : "Adobe Flash Standalone, AS3"
         },
         {
             "image" : "flash.jpg",

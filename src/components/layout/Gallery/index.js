@@ -109,7 +109,7 @@ const Gallery = () => {
                 </div>
             </div>
           ) : (
-            <div className={baseUrl + dayMode}>
+            <div className={'gallery ' + dayMode}>
                 <div className='arrows'>
                     <div className={'arrowBackward ' + dayMode}>
                         <BigIcon key={0} ease="bounceIn" selectedId={-1} index={0}

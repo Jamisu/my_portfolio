@@ -46,27 +46,32 @@
 }
 
 .imageLayer {
-    display: flex;
-    top: 10%;
-    justify-content: center;
+    // display: flex;
+    // top: 10%;
+    // justify-content: center;
+    top: 50%;
+    left: 50%;
     width: 100%;
     height: 100%;
     position: fixed;
+    transform: translate(-50%, -50%) scale(70%);
 }
 
 .imageLayer img {
-    position:fixed;
-    aspect-ratio: 16 / 9;
-    max-width:70%;
+    // position:fixed;
+    // aspect-ratio: 16 / 9;
+    // transform: scale(70%);
+    // max-width:70%;
     border-radius: 20px;
     filter: drop-shadow(5px 5px 7px rgba(0, 0, 0, 0.7));
     border: #000 solid 2px;
+  
 }
 
 .imageLayer .description {
     display: flex;
     position: fixed;
-    max-width:70%;
+    // max-width:70%;
     border-radius: 20px;
     filter: drop-shadow(5px 5px 7px rgba(0, 0, 0, 0.7));
     border: #000 solid 2px;
@@ -102,18 +107,18 @@
     margin-left: 10px;
 }
 
-.imageLayer.imgFadeIn  {
-    animation-fill-mode: forwards;
-    animation: imgFadeIn 0.5s;
-    opacity: 1;
-    transform: scale(1);
-}
-.imageLayer.imgFadeOut  {
-    animation-fill-mode: forwards;
-    animation: imgFadeOut 0.3s;
-    opacity: 0;
-    transform: scale(0.8);
-}
+// .imageLayer.imgFadeIn  {
+//     animation-fill-mode: forwards;
+//     animation: imgFadeIn 0.5s;
+//     opacity: 1;
+//     transform: scale(1);
+// }
+// .imageLayer.imgFadeOut  {
+//     animation-fill-mode: forwards;
+//     animation: imgFadeOut 0.3s;
+//     opacity: 0;
+//     transform: scale(0.8);
+// }
 
 @keyframes imgFadeIn {
     0% { opacity: 0; transform: scale(0.8)
