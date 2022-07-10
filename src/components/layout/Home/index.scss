@@ -7,9 +7,10 @@
 .home .description {
     top: 66vh;
     position: fixed;
-    width: 100%;
-    height: 30%;
-
+    width: 70%;
+    left: 15%;
+    
+    text-align: center;
     font-family: 'Joy Multiplication', sans-serif;
     letter-spacing: 1.5px;
     line-height: 20px;
@@ -37,13 +38,9 @@
 }
 
 .iconContainer {
-    display: flex; 
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
     position: absolute;
-    width: 70%;
-    height: 30%;
+    width: 100%;
+    
     position: fixed;
     top: 45%;
     left: 50%;
@@ -52,13 +49,9 @@
 }
 
 .homeTextArea {
-    justify-content: center;
-    align-items: center;
-    display: flex; 
-    flex-wrap:wrap;
+    top: 12%;
     position: absolute;
     width: 100%;
-    height: 30%;
 
     font-family: 'Neuropol', sans-serif;
 
@@ -83,3 +76,12 @@
     100% { transform: scale(1)}
 }
 
+@media (max-width: 768px) {
+    .home .description {
+        font-size: 12px;
+        letter-spacing: .5px;
+
+        width: 90%;
+        left: 5%;
+    }
+}

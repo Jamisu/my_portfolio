@@ -7,13 +7,17 @@ import {
   faUser,
   faEnvelope,
   faFileImage,
-  faToggleOn
+  faToggleOn,
+  faBars
 } from '@fortawesome/free-solid-svg-icons'
 import { NavLink } from 'react-router-dom'
+import { useState } from 'react'
 
 const Menu = (props) => {
     const dayMode = props.dayMode;
     const onSwitch = props.onSwitch;
+
+    const [linksActive, setActiveLinks] = useState(false);
     
     const dayNightMode = () => {
       let localState = (dayMode === 'day' && 'night') || 'day'
@@ -51,7 +55,10 @@ const Menu = (props) => {
 
           {/* --LINKS */}
 
-          <div className='links'>
+          <div className={'links ' + linksActive}>
+            <button className='hamburger' onClick={e => linksActive ? setActiveLinks(false) : setActiveLinks(true)}>
+              <FontAwesomeIcon icon={faBars} />
+            </button>
             <div className='link'>
               <a
                 href="https://www.linkedin.com/in/adam-pocentek-9725967b/"
@@ -91,11 +98,12 @@ const Menu = (props) => {
                 <FontAwesomeIcon icon={faSoundcloud} />
               </a>
             </div>
-
             <div className={'toggle ' + dayMode} onClick={dayNightMode}>
               <FontAwesomeIcon icon={faToggleOn} />
             </div>
+            
           </div>
+          
         </div>
       </div>
     )

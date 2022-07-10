@@ -7,10 +7,10 @@ const Contact = () => {
     return(<div className='map-container'>
 
             <div className={"info-map " + dayMode}>
-                Adam Pocentek<br/><br/>
-                FullStack Developer<br/><br/>
-                690 292 060<br/><br/>
-                a.pocentek@gmail.com<br/><br/>
+                Adam Pocentek<br/>
+                FullStack Developer<br/>TEL: 
+                <a href="tel:690 292 060"> 690 292 060</a><br/>EMAIL: 
+                <a href="mailto: a.pocentek@gmail.com"> a.pocentek@gmail.com</a><br/>
                 Krakow<br/>
                 Poland<br/>
             </div>

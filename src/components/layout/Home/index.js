@@ -21,12 +21,12 @@ const Home = () => {
             <div className="description">
                 <div>
                 <br/>
-                I am an application programmer with thirteen years of experience<br/>
-                mostly front and a bit of back-end.<br/>
-                Being perfectly at work both independently or in a team <br/>
-                I have created many games and applications for mobile devices<br/>
-                and participated in creation of desktop CMS services.<br/>
-                Last but not least I have an experience in Scrum methodology<br/>
+                I am an application programmer with thirteen years of experience. 
+                mostly front and a bit of back-end. 
+                Being perfectly at work both independently or in a team. 
+                I have created many games and applications for mobile devices. 
+                and participated in creation of desktop CMS services. 
+                Last but not least I have an experience in Scrum methodology. 
                 and a bit of team management :)
                 </div>
             </div>

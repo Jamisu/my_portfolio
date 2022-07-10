@@ -1,5 +1,5 @@
 .map-container {
-    position: absolute;
+    position:fixed ;
     width: 70%;
     height: 70%;
     left: 50%;
@@ -23,18 +23,53 @@
     background: #000;
     border-radius: 10px;
     z-index: 1000;
-    width: 267px;
+    width: auto;
     padding: 10px;
     margin: 20px;
     color: #ffff00;
-    // font-family: 'Neuropol', sans-serif;
     font-family: 'Joy Multiplication', sans-serif;
     font-size: 17px;
-    font-weight: 300;
+    line-height: 2em;
     opacity: 0.8;
     filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.7));
 
-    &.night {
+    a, a:link, a:visited {
         color: #00b7ff;
+        text-decoration: none;
+    }
+
+    &.night {
+        a, a:link, a:visited {
+            color: #ffff00;
+        }
+        color: #00b7ff;
+    }
+}
+
+@media (max-width: 768px) {
+    .map-container {
+        width: 100%;
+        height: calc(100% - 100px);
+
+        .leaflet-container {
+            // top: 60px;
+            border: none;
+            border-radius: 0;
+            filter: none;
+            width: 100%;
+            height: calc(100% - 124px);
+          }
+
+        .info-map {
+            position: relative;
+            margin: 0;
+            width: 100%;
+            margin-top: 10px;
+            font-size: 12px;
+            border-radius: 0;
+            line-height: 1.5em;
+            letter-spacing: 3px;
+            text-align: left;
+        }
     }
 }
