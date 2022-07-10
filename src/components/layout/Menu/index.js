@@ -55,8 +55,8 @@ const Menu = (props) => {
 
           {/* --LINKS */}
 
-          <div className={'links ' + linksActive}>
-            <button className='hamburger' onClick={e => linksActive ? setActiveLinks(false) : setActiveLinks(true)}>
+          <div className={'links ' + linksActive} onMouseEnter={e => setActiveLinks(true)} onMouseLeave={e => setActiveLinks(false)}>
+            <button className='hamburger'>
               <FontAwesomeIcon icon={faBars} />
             </button>
             <div className='link'>

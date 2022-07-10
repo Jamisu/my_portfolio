@@ -68,7 +68,8 @@
 }
 
 .links {
-    position: relative;
+    position: absolute;
+    right: 20px;
     display: flex;
     flex-direction: row;
     margin:0;
@@ -122,7 +123,7 @@
 }
 
 .toggle {
-    margin: 0px 30px 0px 30px;
+    margin: 0px 0px 0px 30px;
     cursor: pointer;
     svg {
         color: #FFFF00;
