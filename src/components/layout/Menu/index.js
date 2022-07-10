@@ -24,6 +24,11 @@ const Menu = (props) => {
       onSwitch(localState);
     }
 
+    const handleHamburger = (e) => {
+      console.log('clicked', e);
+      linksActive ? setActiveLinks(false) : setActiveLinks(true);
+    }
+
     return(
       <div className={"menu " + dayMode}>
         <div className='container'>
@@ -55,7 +60,7 @@ const Menu = (props) => {
 
           {/* --LINKS */}
 
-          <div className={'links ' + linksActive} onMouseEnter={e => setActiveLinks(true)} onMouseLeave={e => setActiveLinks(false)}>
+          <div className={'links ' + linksActive} onClick={e => handleHamburger(e)}>
             <button className='hamburger'>
               <FontAwesomeIcon icon={faBars} />
             </button>

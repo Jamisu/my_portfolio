@@ -33,7 +33,7 @@ const Home = () => {
             
             <div className='iconContainer' >
                 {icons.map((icon, i) => <BigIcon key={i} ease="bounceIn" selectedId={selectedIndex} index={i} 
-                onClickHandler={clickHandler} onHoverHandler={e=>e} icon={icon} color="#ffff00" size='10x'/>)} 
+                onClickHandler={clickHandler} onHoverHandler={e=>e} icon={icon}/>)} 
             </div>
 
             <div className='homeTextArea'>

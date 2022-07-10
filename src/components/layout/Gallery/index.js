@@ -27,8 +27,8 @@ const Gallery = () => {
             imgSize.height = window.innerHeight - 300;
             imgSize.width = Math.floor(imgSize.height * 1.777);
 
-            if (imgSize.width > window.innerWidth-10) {
-                imgSize.width = window.innerWidth-10;
+            if (imgSize.width > window.innerWidth - 10) {
+                imgSize.width = window.innerWidth - 10;
                 imgSize.height = imgSize.width / 1.777;
             }
 
@@ -36,8 +36,6 @@ const Gallery = () => {
         }, 100);
 
         window.addEventListener("resize", debouncedHandleResize);
-        
-
         return (e) => {
             window.removeEventListener("resize", debouncedHandleResize);
         };

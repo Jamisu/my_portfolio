@@ -2,8 +2,8 @@ import './index.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const BigIcon = (params) => {
-    const {ease, index, icon, color="#ffff00", size='10x', onClickHandler, onHoverHandler, selectedId} = params;
-    const FontAwe = <FontAwesomeIcon className='awe ' icon={icon} color={color} size={size}/>
+    const {ease, index, icon, size='9x', onClickHandler, onHoverHandler, selectedId} = params;
+    const FontAwe = <FontAwesomeIcon className='awe ' icon={icon} size={size}/>
 
     let thisIndex = index;
 

@@ -38,7 +38,6 @@
 }
 
 .iconContainer {
-    position: absolute;
     width: 100%;
     
     position: fixed;
@@ -46,6 +45,12 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 3;
+}
+
+@media (max-width: 768px) {
+    .iconContainer {
+        white-space: nowrap;
+    }
 }
 
 .homeTextArea {

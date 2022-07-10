@@ -34,7 +34,7 @@ const About = () => {
             </div>
             <div className={'iconContainer'} >
                 {icons.map((icon, i) => <BigIcon key={i} ease="bounceIn" selectedId={selectedIndex} index={i} 
-                onClickHandler={e=>e} onHoverHandler={onHoverHandler} icon={icon} color="#ffff00" size='10x'/>)} 
+                onClickHandler={e=>e} onHoverHandler={onHoverHandler} icon={icon}/>)} 
             </div>
     </div>)
 }

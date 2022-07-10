@@ -24,6 +24,10 @@
         }
     }
 
+    .links.true  {
+        background-color: #333333;
+    }
+
     .links a svg {
         color: #00b7ff;
     }
@@ -92,6 +96,7 @@
 
         &.true {
             margin: 0;
+            background-color: #222222;
             div {
                 display:block;
                 margin: 0;

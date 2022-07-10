@@ -5,8 +5,6 @@ button {
 }
 
 .bigIcon {
-    // flex-grow: 1;
-    // flex-shrink: 1;
     margin: 10px;
     opacity: 0;
     animation-fill-mode:none;
@@ -14,6 +12,22 @@ button {
     animation-iteration-count: 1;
     transform-origin: center;
     filter: drop-shadow(5px 5px 7px rgba(0, 0, 0, 0.7));
+
+    svg.awe:hover,
+    svg.awe:active {
+        animation-fill-mode: forwards;
+        animation: svGrow 0.2s;
+        opacity: 1;
+        transform: scale(1.1);
+    }
+
+    svg.awe {
+        animation-fill-mode: forwards;
+        animation: svShrink 0.2s;
+        opacity: 1;
+        transform: scale(1);
+        color: #ffff00;
+    }
 }
 
 .bigIcon.active svg {
@@ -24,22 +38,6 @@ button {
     animation-fill-mode: forwards;
     animation-name: bounce-in;
     animation-timing-function: ease;
-}
-
-svg.awe:hover,
-svg.awe:active {
-    animation-fill-mode: forwards;
-    animation: svGrow 0.2s;
-    opacity: 1;
-    transform: scale(1.1);
-}
-
-svg.awe {
-    animation-fill-mode: forwards;
-    animation: svShrink 0.2s;
-    opacity: 1;
-    transform: scale(1);
-    color: #ffff00;
 }
 
 @keyframes bounce-in {
