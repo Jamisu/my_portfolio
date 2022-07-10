@@ -24,11 +24,13 @@ const Gallery = () => {
  
             let imgSize = {width:window.innerWidth, height:window.innerHeight};
 
-            // imgSize.width = window.innerWidth - 300;
-            // imgSize.height = Math.floor(imgSize.width / 1.777);
-
             imgSize.height = window.innerHeight - 300;
             imgSize.width = Math.floor(imgSize.height * 1.777);
+
+            if (imgSize.width > window.innerWidth-10) {
+                imgSize.width = window.innerWidth-10;
+                imgSize.height = imgSize.width / 1.777;
+            }
 
             setDimensions(imgSize);
         }, 100);
