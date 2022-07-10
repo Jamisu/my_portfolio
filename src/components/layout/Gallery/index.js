@@ -5,17 +5,55 @@ import { faCircleChevronLeft, faCircleChevronRight } from '@fortawesome/free-sol
 import { useOutletContext } from "react-router-dom";
 
 const Gallery = () => {
+    let animTimeout;
+    const baseUrl = './images/';
+    const url = './images/gallery.json';
+
     const [dayMode] = useOutletContext();
 
     const [contentData, setData] = useState();
     const [currentImage, setCurrent] = useState(0);
     const [animationClass, setAnimationClass] = useState('imgFadeIn');
-  
-    let animTimeout;
-    const baseUrl = './images/';
-    const url = './images/gallery.json';
+    const [dimensions, setDimensions] = React.useState({
+        height: window.innerHeight,
+        width: window.innerWidth
+    });
 
     useEffect(() => {
+        const debouncedHandleResize = debounce(function handleResize() {
+ 
+            let imgSize = {width:window.innerWidth, height:window.innerHeight};
+
+            // imgSize.width = window.innerWidth - 300;
+            // imgSize.height = Math.floor(imgSize.width / 1.777);
+
+            imgSize.height = window.innerHeight - 300;
+            imgSize.width = Math.floor(imgSize.height * 1.777);
+
+            setDimensions(imgSize);
+        }, 100);
+
+        window.addEventListener("resize", debouncedHandleResize);
+        
+
+        return (e) => {
+            window.removeEventListener("resize", debouncedHandleResize);
+        };
+    });
+
+    function debounce(fn, ms) {
+        let timer;
+        return (t) => {
+            clearTimeout(timer);
+            timer = setTimeout((t) => {
+                timer = null;
+                fn.apply(this, arguments);
+            }, ms);
+        };
+    }
+
+    useEffect(() => {
+        window.dispatchEvent(new Event('resize'));
         fetch(url)
             .then(response => response.json())
             .then(data => setInitialData(data));
@@ -32,9 +70,7 @@ const Gallery = () => {
     }
 
     const preloadAllImages = (data, urlList) => {
-        async function preload() {
-                console.log('PRELOAD');
-            
+        async function preload() {            
                 const imagesPromiseList = [];
                 for (const i of urlList) {
                     imagesPromiseList.push(preloadImage(i))
@@ -49,7 +85,6 @@ const Gallery = () => {
     }
 
     const preloadImage = (src) => {
-        console.log('PRELOAD image', src);
         return new Promise((resolve, reject) => {
           const img = new Image();
           img.onload = function() {
@@ -84,7 +119,6 @@ const Gallery = () => {
     }
 
     const startChange = (current) => {
-        console.log('cuurrent', current);
         setAnimationClass('imgFadeOut');
         animTimeout = setTimeout(endChange, 300, current);
     }
@@ -122,15 +156,16 @@ const Gallery = () => {
                 </div> 
                 
                 <div className={'imageLayer ' + animationClass}>
-                    <img src={baseUrl + contentData.images[currentImage].image} alt="project" />
+                    <img height={dimensions.height} width={dimensions.width} src={baseUrl + contentData.images[currentImage].image} alt="project" />
+
                     <div className='description'>
                         <div className='txtCont1'>
-                            <div className='title'>Project: </div>
+                            <div className='title'>Project</div>
                             <div className='desc'>{contentData.images[currentImage].desc}</div>
                         </div>
                         
                         <div className='txtCont2'>
-                            <div className='title'>Technologies: </div>
+                            <div className='title'>Technologies</div>
                             <div className='desc'>{contentData.images[currentImage].tech}</div>
                         </div>
                     </div>
@@ -139,8 +174,8 @@ const Gallery = () => {
 
                 <div className='thumbLayer'>
                     {contentData.images.map((img, i) => 
-                        <div className={'thumb ' + ((currentImage === i) && 'active') } key={i}>
-                            <img className={'_' + i} src={baseUrl + img.thumb} id={i} alt="project" onClick={thumbClick}/>
+                        <div className={'thumb ' + ((currentImage === i) && 'active _' + i) } key={i}>
+                            <img src={baseUrl + img.thumb} id={i} alt="project" onClick={thumbClick}/>
                         </div>
                     )}
                 </div>

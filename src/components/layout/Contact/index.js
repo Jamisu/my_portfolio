@@ -8,8 +8,9 @@ const Contact = () => {
 
             <div className={"info-map " + dayMode}>
                 Adam Pocentek<br/><br/>
-                Junior FullStack Developer<br/><br/>
+                FullStack Developer<br/><br/>
                 690 292 060<br/><br/>
+                a.pocentek@gmail.com<br/><br/>
                 Krakow<br/>
                 Poland<br/>
             </div>

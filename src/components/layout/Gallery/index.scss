@@ -1,3 +1,9 @@
+$scale-norm: 1;
+$scale-shrink: 0.7;
+$scale-grow: 1.2;
+$shadow: 5px 5px 7px rgba(0, 0, 0, 0.7);
+$center: -50%, -50%;
+
 .gallery {
     position:fixed;
     width: 100%;
@@ -20,81 +26,73 @@
     align-items: center;
     position: absolute;
     width: 100%;
-    bottom: 70px;
+    bottom: 50px;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate($center);
     z-index: 2;
+
+    // .thumb {
+    //     animation-fill-mode: forwards;
+    //     animation: imgFadeIn 0.5s;
+    // }
 }
 
 .thumbLayer img {
-    animation-fill-mode: forwards;
-    animation: imgFadeIn 0.5s;
+    //animation-fill-mode: forwards;
+    //animation: imgFadeIn 0.5s;
 
     margin: 10px;
-    filter: saturate(0) drop-shadow(5px 5px 7px rgba(0, 0, 0, 0.7));
     border-radius: 10px;
     cursor: pointer;
 }
 
 .thumbLayer .active img {
-    filter: drop-shadow(5px 5px 7px rgba(0, 0, 0, 0.7));
+    filter: drop-shadow($shadow);
     border: #ffff00 solid 2px;
 }
 
 .thumbLayer .thumb:hover img {
-    filter: drop-shadow(5px 5px 7px rgba(0, 0, 0, 0.7));
+    filter: drop-shadow($shadow);
 }
 
 .imageLayer {
-    // display: flex;
-    // top: 10%;
-    // justify-content: center;
-    top: 45%;
+    top: 46%;
     left: 50%;
-    width: auto;
-    height: auto;
     position: fixed;
-    transform: translate(-50%, -50%) scale(.8);
+    transform: translate($center);
 }
 
 .imageLayer img {
-    // position:fixed;
-    // aspect-ratio: 16 / 9;
-    // transform: scale(70%);
-    // max-width:70%;
+    // aspect-ratio: 16/9;
     border-radius: 20px;
-    filter: drop-shadow(5px 5px 7px rgba(0, 0, 0, 0.7));
+    filter: drop-shadow($shadow);
     border: #000 solid 2px;
-  
 }
 
 .imageLayer.imgFadeIn  {
     animation-fill-mode: forwards;
     animation: imgFadeIn 0.5s;
     opacity: 1;
-    transform: translate(-50%, -50%) scale(.7);
+    transform: translate($center) scale($scale-norm);
 }
 .imageLayer.imgFadeOut  {
     animation-fill-mode: forwards;
     animation: imgFadeOut 0.3s;
     opacity: 0;
-    transform: translate(-50%, -50%) scale(.6);
+    transform: translate($center) scale($scale-shrink);
 }
 
 @keyframes imgFadeIn {
-    0% { opacity: 0; transform: translate(-50%, -50%) scale(.6)
+    0% { opacity: 0; transform: translate($center) scale($scale-shrink)
     }
-    60% {
-        opacity: 1; transform: translate(-50%, -50%) scale(.8)
-    }
-    100% { opacity: 1; transform: translate(-50%, -50%) scale(.7)
+    100% { opacity: 1; transform: translate($center) scale($scale-norm)
     }
 }
 
 @keyframes imgFadeOut {
-    0% { opacity: 1; transform: translate(-50%, -50%) scale(.7)
+    0% { opacity: 1; transform: translate($center) scale($scale-norm)
     }
-    100% { opacity: 0; transform: translate(-50%, -50%) scale(.8)
+    100% { opacity: 0; transform: translate($center) scale($scale-grow)
     }
 }
 
@@ -102,24 +100,25 @@
     display: flex;
     justify-content: space-between;
     position: relative;
-    // max-width:70%;
+    // top: 5px;
     border-radius: 20px;
-    filter: drop-shadow(5px 5px 7px rgba(0, 0, 0, 0.7));
+    filter: drop-shadow($shadow);
     border: #000 solid 2px;
 
     left: 50%;
     transform: translate(-50%);
     text-align: left;
     width: 90%;
-    height: 40px;
+    height: auto;
     padding: 10px;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.3);
 
     font-family: 'Joy Multiplication', sans-serif;
+    font-size: small;
     letter-spacing: 1.5px;
-    line-height: 20px;
+    line-height: 15px;
     color:#ffff00;
-    filter: drop-shadow(5px 5px 7px rgba(0, 0, 0, 0.7));
+    filter: drop-shadow($shadow);
     z-index: 1;
 }
 
@@ -164,7 +163,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate($center);
 }
 
 .preloaderCss {
@@ -172,7 +171,7 @@
     position: relative;
     width: 80px;
     height: 80px;;
-    filter: drop-shadow(5px 5px 7px rgba(0, 0, 0, 0.7));
+    filter: drop-shadow($shadow);
 
     &.night div {
         background: #00bfff;

@@ -6,14 +6,11 @@ import Footer from '../layout/Footer'
 const Layout = () => {
     const [dayMode, setDayNightState] = useState('day');
     const onSwitch = (day) => {
-        console.log('currently', dayMode);
-        setDayNightState(day);
-        console.log('setting', day);
-        
+        document.body.className = day;
+        setDayNightState(day);   
     }
     return(
         <div className="App">
-            {console.log('dayMode', dayMode)}
             <Menu onSwitch={onSwitch} dayMode={dayMode}/>
             <div className="page">
                 <Outlet context={[dayMode, setDayNightState]}/>

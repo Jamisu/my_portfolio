@@ -9,24 +9,19 @@ import {
   faFileImage,
   faToggleOn
 } from '@fortawesome/free-solid-svg-icons'
-import { NavLink, useOutletContext } from 'react-router-dom'
-import { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 
 const Menu = (props) => {
-    let dayMode = props.dayMode;
+    const dayMode = props.dayMode;
     const onSwitch = props.onSwitch;
-    const [dayNightState, setDayNightState] = useState('day');
     
     const dayNightMode = () => {
-      console.log('from props', dayMode);
-      let localState = (dayNightState === 'day' && 'night') || 'day'
-      setDayNightState(localState);
+      let localState = (dayMode === 'day' && 'night') || 'day'
       onSwitch(localState);
-      document.body.className = localState;
     }
 
     return(
-      <div className={"menu " + dayNightState}>
+      <div className={"menu " + dayMode}>
         <div className='container'>
           <nav className="navigation">
             <NavLink exact="true" activeclassname="active" to="/">
@@ -97,7 +92,7 @@ const Menu = (props) => {
               </a>
             </div>
 
-            <div className={'toggle ' + dayNightState} onClick={dayNightMode}>
+            <div className={'toggle ' + dayMode} onClick={dayNightMode}>
               <FontAwesomeIcon icon={faToggleOn} />
             </div>
           </div>
