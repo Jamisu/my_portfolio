@@ -13,6 +13,10 @@ const Home = () => {
     const [selectedIndex, setSelectedIndex] = useState(5);
 
     const clickHandler = (e) => {
+        const bigs = document.querySelectorAll('.bigIcon');
+        const offset = window.innerWidth/2 - bigs[e].offsetLeft - bigs[e].offsetWidth/2;
+
+        document.getElementsByClassName('iconContainer')[0].style.left = offset + 'px';
         setSelectedIndex(e);
     }
 
@@ -20,20 +24,19 @@ const Home = () => {
         <div className={"home " + dayMode}>
             <div className="description">
                 <div>
-                <br/>
-                I am an application programmer with thirteen years of experience. 
-                mostly front and a bit of back-end. 
-                Being perfectly at work both independently or in a team. 
-                I have created many games and applications for mobile devices. 
+                I am an application programmer with thirteen years of experience, 
+                mostly front and a bit of back-end,
+                being perfectly at work both independently or in a team. 
+                I have created many games and applications for mobile devices 
                 and participated in creation of desktop CMS services. 
-                Last but not least I have an experience in Scrum methodology. 
-                and a bit of team management :)
+                Last but not least I have an experience in Scrum methodology 
+                and a bit of team management
                 </div>
             </div>
             
             <div className='iconContainer' >
                 {icons.map((icon, i) => <BigIcon key={i} ease="bounceIn" selectedId={selectedIndex} index={i} 
-                onClickHandler={clickHandler} onHoverHandler={e=>e} icon={icon}/>)} 
+                onClickHandler={clickHandler} onHoverHandler={e=>e} icon={icon}/>)}
             </div>
 
             <div className='homeTextArea'>

@@ -26,6 +26,14 @@ const About = () => {
         setSelectedIndex(e);
     }
 
+    const clickHandler = (e) => {
+        const bigs = document.querySelectorAll('.bigIcon');
+        const offset = window.innerWidth/2 - bigs[e].offsetLeft - bigs[e].offsetWidth/2;
+
+        document.getElementsByClassName('iconContainer')[0].style.left = offset + 'px';
+        setSelectedIndex(e);
+    }
+
     return(
     <div className={'about ' + dayMode}>
             <div className={'aboutTextArea'}>
@@ -34,7 +42,7 @@ const About = () => {
             </div>
             <div className={'iconContainer'} >
                 {icons.map((icon, i) => <BigIcon key={i} ease="bounceIn" selectedId={selectedIndex} index={i} 
-                onClickHandler={e=>e} onHoverHandler={onHoverHandler} icon={icon}/>)} 
+                onClickHandler={clickHandler} onHoverHandler={onHoverHandler} icon={icon}/>)} 
             </div>
     </div>)
 }

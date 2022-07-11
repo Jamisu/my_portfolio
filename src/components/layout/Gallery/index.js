@@ -146,11 +146,11 @@ const Gallery = () => {
             <div className={'gallery ' + dayMode}>
                 <div className='arrows'>
                     <div className={'arrowBackward ' + dayMode}>
-                        <BigIcon key={0} ease="bounceIn" selectedId={-1} index={0}
+                        <BigIcon key={0} ease="" selectedId={-1} index={0}
                         onClickHandler={clickHandler} onHoverHandler={e=>e} icon={faCircleChevronLeft} color="#ffff00" size='6x'/>
                     </div>
                     <div className={'arrowForward ' + dayMode}>
-                        <BigIcon key={1} ease="bounceIn" selectedId={-1} index={1}
+                        <BigIcon key={1} ease="" selectedId={-1} index={1}
                         onClickHandler={clickHandler} onHoverHandler={e=>e} icon={faCircleChevronRight} color="#ffff00" size='6x'/>
                     </div>
                 </div> 
