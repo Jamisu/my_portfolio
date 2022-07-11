@@ -37,11 +37,12 @@
     }
 }
 
-.iconContainer {
+.home .iconContainer {
     width: 100%;
-    
+    height: auto;
+    align-items: center;
     position: fixed;
-    top: 48%;
+    top: 47%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 3;

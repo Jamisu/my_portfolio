@@ -1,7 +1,7 @@
 import './index.scss'
 import BigIcon from '../../BigIcon'
 import { faReact, faJsSquare, faCss3, faHtml5, faSass, faPython, faJava, faAngular } from '@fortawesome/free-brands-svg-icons'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useOutletContext } from "react-router-dom";
 
 const About = () => {
@@ -21,16 +21,46 @@ const About = () => {
     "These are My Skills:"];
 
     const [selectedIndex, setSelectedIndex] = useState(8);
+    const [mobile, setMobile] = useState(false);
 
     const onHoverHandler = (e) => {
         setSelectedIndex(e);
     }
 
-    const clickHandler = (e) => {
-        const bigs = document.querySelectorAll('.bigIcon');
-        const offset = window.innerWidth/2 - bigs[e].offsetLeft - bigs[e].offsetWidth/2;
+    const handleResize = (e) => {
+        if (window.innerWidth <= 768 && !mobile) {
+            const initIndex = selectedIndex < 8 ? selectedIndex : 0;
+            document.getElementsByClassName('iconContainer')[0].style.transform = "translate(0, -50%)"
+            const bigs = document.querySelectorAll('.bigIcon');
+            const offset = window.innerWidth/2 - bigs[initIndex].offsetLeft - bigs[initIndex].offsetWidth/2;
+            document.getElementsByClassName('iconContainer')[0].style.left = offset + 'px';
+            console.log('set mobile on resize', initIndex);
+            setMobile(true);
 
-        document.getElementsByClassName('iconContainer')[0].style.left = offset + 'px';
+        } else if (window.innerWidth > 768 && mobile) {
+            document.getElementsByClassName('iconContainer')[0].style.left = "50%";
+            document.getElementsByClassName('iconContainer')[0].style.transform = "translate(-50%, -50%)";
+            console.log('unset mobile');
+            setMobile(false);
+        }
+    }
+
+    useEffect(() => {
+        console.log('about register resize, mobile:', mobile);
+        window.addEventListener("resize", handleResize);
+        window.dispatchEvent(new Event('resize'));
+        return (e) => {
+            window.removeEventListener("resize", handleResize);
+        };
+    })
+
+    const clickHandler = (e) => {
+        if (mobile) {
+            const bigs = document.querySelectorAll('.bigIcon');
+            const offset = window.innerWidth/2 - bigs[e].offsetLeft - bigs[e].offsetWidth/2;
+
+            document.getElementsByClassName('iconContainer')[0].style.left = offset + 'px';
+        }
         setSelectedIndex(e);
     }
 
