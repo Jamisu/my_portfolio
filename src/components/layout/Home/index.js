@@ -8,7 +8,7 @@ const Home = () => {
     const [dayMode] = useOutletContext();
     const icons = [faPersonHiking, faBiking, faCode, faKitchenSet, faMusic];
     const homeText1 = ["I Love Mountain Hicking", "Cycling, cycling, ever cycling", "Coding is good for your brain",
-     "Cooking is like an an Alchemy", "Music production is the finest of the arts", "Welcome to the Chaotec Portfolio!"];
+     "Cooking is like an Alchemy", "Music production is the finest of the arts", "Welcome to the Chaotec Portfolio!"];
 
     const [selectedIndex, setSelectedIndex] = useState(5);
     const [mobile, setMobile] = useState(false);
