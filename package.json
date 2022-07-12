@@ -1,5 +1,6 @@
 {
- 
+  "__comment__": "homepage: https://jamisu.github.io/my_portfolio/",
+  "homepage": "https://jamisu.github.io/my_portfolio/",
   "name": "portfolio",
   "version": "0.1.0",
   "private": true,
@@ -27,7 +28,7 @@
   },
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d build -r https://gh_token@github.com/Jamisu/my_portfolio.git",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
