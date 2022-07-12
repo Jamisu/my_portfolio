@@ -33,18 +33,18 @@ const Menu = (props) => {
       <div className={"menu " + dayMode}>
         <div className='container'>
           <nav className="navigation">
-            <NavLink exact="true" activeclassname="active" to="/">
+            <NavLink exact="true" activeclassname="active" to="/my_portfolio/">
               <FontAwesomeIcon icon={faHome} />
             </NavLink>
 
-            <NavLink activeclassname="active" className="about-link" to="/about">
+            <NavLink activeclassname="active" className="about-link" to="/my_portfolio/about">
               <FontAwesomeIcon icon={faUser} />
             </NavLink>
 
             <NavLink
               activeclassname="active"
               className="gallery-link"
-              to="/gallery"
+              to="/my_portfolio/gallery"
             >
               <FontAwesomeIcon icon={faFileImage} />
             </NavLink>
@@ -52,7 +52,7 @@ const Menu = (props) => {
             <NavLink
               activeclassname="active"
               className="contact-link"
-              to="/contact"
+              to="/my_portfolio/contact"
             >
               <FontAwesomeIcon icon={faEnvelope} />
             </NavLink>
