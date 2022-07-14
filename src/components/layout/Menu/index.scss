@@ -137,3 +137,20 @@
         height: 35px;
     }
 }
+
+.tooltip {
+    width: auto;
+    position: fixed;
+    // left: 20px;
+    margin-top: 55px;
+    padding: 2px 5px 2px 2px;
+    font-family: 'Joy Multiplication', sans-serif;
+    font-size: 12px;
+    z-index: 10;
+    color: #FFFF00;
+    background-color: rgba(0, 0, 0, 0.7);
+
+    &.false {
+        display: none;
+    }
+}

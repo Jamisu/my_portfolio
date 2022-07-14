@@ -18,6 +18,7 @@ const Menu = (props) => {
     const onSwitch = props.onSwitch;
 
     const [linksActive, setActiveLinks] = useState(false);
+    const [toolVisible, setToolVisible] = useState(false);
     
     const dayNightMode = () => {
       let localState = (dayMode === 'day' && 'night') || 'day'
@@ -29,15 +30,27 @@ const Menu = (props) => {
       linksActive ? setActiveLinks(false) : setActiveLinks(true);
     }
 
+    const showTool = (e) => {
+      setToolVisible(true)
+      const left = e.target.offsetLeft;
+      console.log(left);
+      document.getElementsByClassName('tooltip')[0].style.left = left + "px";
+      console.log(e.target);
+    }
+
+    const hideTool = (e) => {
+      setToolVisible(false)
+    }
+
     return(
       <div className={"menu " + dayMode}>
         <div className='container'>
           <nav className="navigation">
-            <NavLink exact="true" activeclassname="active" to="/my_portfolio/">
+            <NavLink exact="true" activeclassname="active" to="/my_portfolio/"  onMouseEnter={showTool} onMouseLeave={hideTool}>
               <FontAwesomeIcon icon={faHome} />
             </NavLink>
 
-            <NavLink activeclassname="active" className="about-link" to="/my_portfolio/about">
+            <NavLink activeclassname="active" className="about-link" to="/my_portfolio/about"  onMouseEnter={showTool} onMouseLeave={hideTool}>
               <FontAwesomeIcon icon={faUser} />
             </NavLink>
 
@@ -45,6 +58,7 @@ const Menu = (props) => {
               activeclassname="active"
               className="gallery-link"
               to="/my_portfolio/gallery"
+              onMouseEnter={showTool} onMouseLeave={hideTool}
             >
               <FontAwesomeIcon icon={faFileImage} />
             </NavLink>
@@ -53,6 +67,7 @@ const Menu = (props) => {
               activeclassname="active"
               className="contact-link"
               to="/my_portfolio/contact"
+              onMouseEnter={showTool} onMouseLeave={hideTool}
             >
               <FontAwesomeIcon icon={faEnvelope} />
             </NavLink>
@@ -108,7 +123,10 @@ const Menu = (props) => {
             </div>
             
           </div>
-          
+
+          <div className={"tooltip " + toolVisible}>
+            HOME
+          </div>
         </div>
       </div>
     )
