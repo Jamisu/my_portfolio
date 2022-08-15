@@ -13,6 +13,7 @@
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
     "animate.css": "^4.1.1",
+    "gsap": "^3.10.4",
     "install": "^0.13.0",
     "leaflet": "^1.7.1",
     "loaders.css": "^0.1.2",
@@ -28,7 +29,7 @@
   },
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build -r https://gh_token@github.com/Jamisu/my_portfolio.git",
+    "deploy": "gh-pages -d build -r https://token@github.com/Jamisu/my_portfolio.git",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
