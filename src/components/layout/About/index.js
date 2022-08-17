@@ -26,7 +26,6 @@ const About = () => {
 
     const [selectedIndex, setSelectedIndex] = useState(8);
     let draggables = useRef();
-    let itemListArray = [];
 
     useEffect(() => {
         gsap.registerPlugin(Draggable);
@@ -38,7 +37,6 @@ const About = () => {
                     } else {
                         draggables.current[0].enable()
                     }
-                    // if(!mobile) {draggables.current[0].disable()}
                 },
                 onRelease: function() {
                     const endX = this.endX;
@@ -88,14 +86,11 @@ const About = () => {
         setSelectedIndex(e);
     }
     const onHoverHandler = (e) => {
-        // setSelectedIndex(e);
     }
 
     const iconList = () => {
-        itemListArray = icons.map((icon, i) => <BigIcon key={i} ease="bounceIn" selectedId={selectedIndex} index={i} 
-        onClickHandler={clickHandler} onHoverHandler={onHoverHandler} icon={icon}/>)
-
-        return itemListArray;
+        return icons.map((icon, i) => <BigIcon key={i} ease="bounceIn" selectedId={selectedIndex} index={i} 
+        onClickHandler={clickHandler} onHoverHandler={onHoverHandler} icon={icon}/>);
     }
 
     return(
