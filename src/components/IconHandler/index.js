@@ -20,7 +20,7 @@ const IconHandler = (params) => {
                 },
                 onRelease: function() {
                     const endX = this.endX;
-                    const currentScreenOffset = [...this.target.children].map((el, i) => (el.getBoundingClientRect().x + el.getBoundingClientRect().width/2))
+                    const currentScreenOffset = [...this.target.children].map((el) => (el.getBoundingClientRect().x + el.getBoundingClientRect().width/2))
                     const windowCenter = window.innerWidth/2;
                     let indexClosestToCenter = 0;
                     let lastClosestX = 10000;

@@ -5,9 +5,8 @@ import { faCircleChevronLeft, faCircleChevronRight } from '@fortawesome/free-sol
 import { useOutletContext } from "react-router-dom";
 
 const Gallery = () => {
-    let animTimeout;
     const baseUrl = './images/';
-    const url = './images/gallery.json';
+    const url = baseUrl + 'gallery.json';
 
     const [dayMode] = useOutletContext();
 
