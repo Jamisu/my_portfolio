@@ -48,20 +48,6 @@ const IconHandler = (params) => {
         }
     );
 
-    useEffect(() => {
-        window.addEventListener("resize", handleResize);
-        window.dispatchEvent(new Event('resize'));
-        return (e) => {
-            window.removeEventListener("resize", handleResize);
-        };
-    })
-    const handleResize = (e) => {
-        if (window.innerWidth > 768) {
-            draggables.current[0].target.style.left = "50%";
-            draggables.current[0].target.style.transform = "translate(-50%, -50%)";
-        }
-    }
-
     const clickHandler = (e) => {
         setSelectedIndex(e);
     }

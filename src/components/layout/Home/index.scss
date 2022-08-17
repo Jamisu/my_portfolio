@@ -57,9 +57,9 @@
 }
 @media (min-width: 768px) {
     .iconContainer {
-        white-space: wrap;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        white-space: wrap !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) translate3d(0px, 0px, 0px) !important;
     }
 }
 
