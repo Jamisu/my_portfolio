@@ -17,6 +17,7 @@ const Gallery = () => {
         height: window.innerHeight,
         width: window.innerWidth
     });
+    let animTimeout;
 
     useEffect(() => {
         const debouncedHandleResize = debounce(function handleResize() {
@@ -70,17 +71,17 @@ const Gallery = () => {
 
     const preloadAllImages = (data, urlList) => {
         async function preload() {            
-                const imagesPromiseList = [];
-                for (const i of urlList) {
-                    imagesPromiseList.push(preloadImage(i))
-                }
-            
-                await Promise.all(imagesPromiseList)
-                
-                initialise(data);
+            const imagesPromiseList = [];
+            for (const i of urlList) {
+                imagesPromiseList.push(preloadImage(i))
             }
         
-            preload();
+            await Promise.all(imagesPromiseList)
+            
+            initialise(data);
+        }
+    
+        preload();
     }
 
     const preloadImage = (src) => {
@@ -119,6 +120,7 @@ const Gallery = () => {
 
     const startChange = (current) => {
         setAnimationClass('imgFadeOut');
+        clearTimeout(animTimeout);
         animTimeout = setTimeout(endChange, 300, current);
     }
 
