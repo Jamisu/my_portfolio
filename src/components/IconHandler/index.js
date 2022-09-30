@@ -21,15 +21,14 @@ const IconHandler = (params) => {
 
         const timeoutHandler = (e) => {
             const newLeft = containerLeft - mouseStart + mouseX;
-            console.log("bounds", newLeft, window.innerWidth);
-            if (newLeft < bounds.left || newLeft > bounds.right) {
+            if (newLeft < bounds.left && newLeft > bounds.right) {
                 container.style.left = newLeft  + 'px';
             }
         }
         
         const handleDocumentMouseDown = event => {
-            bounds = {'left' : container.clientWidth - window.innerWidth/2,
-                    'right' : container.clientWidth + window.innerWidth/2};
+            bounds = {'left' : container.clientWidth/2 + window.innerWidth/2,
+                    'right' : window.innerWidth/2 - container.clientWidth/2};
                     
             mouseStart = mouseX
             if (container.style.left) {
@@ -42,14 +41,15 @@ const IconHandler = (params) => {
         };
         const handleDocumentMouseUp = event => {
             clearInterval(setIntervalID)
+            // gsap.to(container, {x:300, duration: 0.3})
         }
       
-        document.addEventListener('mouseup', handleDocumentMouseUp);
-        document.addEventListener('mousedown', handleDocumentMouseDown);
+        container.addEventListener('mouseup', handleDocumentMouseUp);
+        container.addEventListener('mousedown', handleDocumentMouseDown);
 
         return () => {
-            document.removeEventListener('mouseup', handleDocumentMouseUp);
-            document.removeEventListener('mousedown', handleDocumentMouseDown);
+            container.removeEventListener('mouseup', handleDocumentMouseUp);
+            container.removeEventListener('mousedown', handleDocumentMouseDown);
             window.onmousemove = null;
             clearTimeout(setIntervalID);
         };
