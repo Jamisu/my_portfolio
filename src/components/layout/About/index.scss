@@ -44,3 +44,18 @@
     transform: translate(-50%, -50%);
     z-index: 3;
 }
+
+@media (max-width: 768px) {
+    .about .iconContainer {
+        white-space: nowrap;
+        left: 0px;
+        transform: translate(0, -50%);
+    }
+}
+@media (min-width: 768px) {
+    .about .iconContainer {
+        white-space: wrap !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) translate3d(0px, 0px, 0px) !important;
+    }
+}

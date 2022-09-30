@@ -5,48 +5,43 @@ import { Draggable } from "gsap/all";
 
 const IconHandler = (params) => {
     const {icons, selectedIndex, setSelectedIndex} = params;
-    let draggables = useRef();
+    let mouseX;
 
     useEffect(() => {
-        gsap.registerPlugin(Draggable);
-        draggables.current = Draggable.create(".iconContainer", {
-                type: "x",
-                onPress: function() {
-                    if(window.innerWidth > 768) {
-                        draggables.current[0].disable()
-                    } else {
-                        draggables.current[0].enable()
-                    }
-                },
-                onRelease: function() {
-                    const endX = this.endX;
-                    const currentScreenOffset = [...this.target.children].map((el) => (el.getBoundingClientRect().x + el.getBoundingClientRect().width/2))
-                    const windowCenter = window.innerWidth/2;
-                    let indexClosestToCenter = 0;
-                    let lastClosestX = 10000;
-
-                    for(var i=0; i < currentScreenOffset.length; i++) {
-                        const currentItemDifference = Math.abs(currentScreenOffset[i] - windowCenter);
-                        if (currentItemDifference < lastClosestX) {
-                            lastClosestX = currentItemDifference;
-                            indexClosestToCenter = i;
-                        } else if (currentItemDifference >= lastClosestX) {
-                            break;
-                        }
-                        indexClosestToCenter = i;
-                    }
-                    setSelectedIndex(indexClosestToCenter);
-                    const correctionX = endX - currentScreenOffset[indexClosestToCenter] + windowCenter;
-
-                    gsap.to(".iconContainer", {
-                        x: correctionX,
-                        duration: .5,
-                        ease: "back"
-                    })
-                }
-            });
+        let mouseStart;
+        let container = document.getElementsByClassName('iconContainer')[0]
+        let containerLeft = 0;
+        const timeoutHandler = (e) => {
+            container.style.left = containerLeft - mouseStart + mouseX + 'px';
+            console.log(container.style.left, 'container', containerLeft + mouseStart - mouseX );
         }
-    );
+        let setIntervalID;
+        
+        const handleDocumentMouseDown = event => {
+            console.log('mouseDown', mouseStart, mouseX)
+            mouseStart = mouseX
+            containerLeft = container.style.left || window.innerHeight/2;
+            setIntervalID = setInterval(timeoutHandler, 10)
+        };
+        const handleDocumentMouseUp = event => {
+            console.log('mouseUp', mouseX)
+            clearTimeout(setIntervalID)
+        };
+      
+        document.addEventListener('mouseup', handleDocumentMouseUp);
+        document.addEventListener('mousedown', handleDocumentMouseDown);
+
+        return () => {
+            document.removeEventListener('mouseup', handleDocumentMouseUp);
+            document.removeEventListener('mousedown', handleDocumentMouseDown);
+            onmousemove = null;
+            clearTimeout(setIntervalID);
+        };
+    }, [mouseX]);
+
+    onmousemove = function(e) {
+        mouseX = e.x
+    }
 
     const clickHandler = (e) => {
         setSelectedIndex(e);
