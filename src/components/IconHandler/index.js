@@ -5,28 +5,44 @@ import { Draggable } from "gsap/all";
 
 const IconHandler = (params) => {
     const {icons, selectedIndex, setSelectedIndex} = params;
-    let mouseX;
 
     useEffect(() => {
         let mouseStart;
         let container = document.getElementsByClassName('iconContainer')[0]
-        let containerLeft = 0;
-        const timeoutHandler = (e) => {
-            container.style.left = containerLeft - mouseStart + mouseX + 'px';
-            console.log(container.style.left, 'container', containerLeft + mouseStart - mouseX );
-        }
+        let containerLeft;
         let setIntervalID;
+        let mouseX;
+
+        let bounds = {};
+
+        window.onmousemove = function(e) {
+            mouseX = e.x
+        }
+
+        const timeoutHandler = (e) => {
+            const newLeft = containerLeft - mouseStart + mouseX;
+            console.log("bounds", newLeft, window.innerWidth);
+            if (newLeft < bounds.left || newLeft > bounds.right) {
+                container.style.left = newLeft  + 'px';
+            }
+        }
         
         const handleDocumentMouseDown = event => {
-            console.log('mouseDown', mouseStart, mouseX)
+            bounds = {'left' : container.clientWidth - window.innerWidth/2,
+                    'right' : container.clientWidth + window.innerWidth/2};
+                    
             mouseStart = mouseX
-            containerLeft = container.style.left || window.innerHeight/2;
-            setIntervalID = setInterval(timeoutHandler, 10)
+            if (container.style.left) {
+                containerLeft = parseInt(container.style.left)
+            } else {
+                containerLeft = window.innerWidth/2;
+            }
+
+            setIntervalID = setInterval(timeoutHandler, 25)
         };
         const handleDocumentMouseUp = event => {
-            console.log('mouseUp', mouseX)
-            clearTimeout(setIntervalID)
-        };
+            clearInterval(setIntervalID)
+        }
       
         document.addEventListener('mouseup', handleDocumentMouseUp);
         document.addEventListener('mousedown', handleDocumentMouseDown);
@@ -34,14 +50,12 @@ const IconHandler = (params) => {
         return () => {
             document.removeEventListener('mouseup', handleDocumentMouseUp);
             document.removeEventListener('mousedown', handleDocumentMouseDown);
-            onmousemove = null;
+            window.onmousemove = null;
             clearTimeout(setIntervalID);
         };
-    }, [mouseX]);
+    }, []);
 
-    onmousemove = function(e) {
-        mouseX = e.x
-    }
+    
 
     const clickHandler = (e) => {
         setSelectedIndex(e);

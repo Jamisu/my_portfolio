@@ -38,10 +38,11 @@
 }
 
 .home .iconContainer {
-    width: 100%;
+    width: auto;
     height: auto;
     align-items: center;
     position: fixed;
+    white-space: nowrap;
     top: 47%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -50,7 +51,7 @@
 
 @media (max-width: 768px) {
     .iconContainer {
-        white-space: nowrap;
+        // white-space: nowrap;
         // left: 0px;
         // transform: translate(0, -50%);
     }
@@ -59,7 +60,7 @@
     .iconContainer {
         // white-space: wrap !important;
         // left: 50% !important;
-        transform: translate(-50%, -50%) translate3d(0px, 0px, 0px) !important;
+        // transform: translate(-50%, -50%) translate3d(0px, 0px, 0px) !important;
     }
 }
 
