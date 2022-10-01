@@ -15,18 +15,12 @@ const IconHandler = (params) => {
 
         let bounds = {};
 
-        window.onmousemove = function(e) {
-            mouseX = e.x
+        const timeoutHandler = (e) => {
+            setContainetX();
         }
 
-        const timeoutHandler = (e) => {
-            const newLeft = containerLeft - mouseStart + mouseX;
-            if (newLeft < bounds.left && newLeft > bounds.right) {
-                container.style.left = newLeft  + 'px';
-            }
-        }
-        
-        const handleDocumentMouseDown = event => {
+        const setBoundsAndStartPos = e => {
+            console.log('setBoundsAndStartPos');
             bounds = {'left' : container.clientWidth/2 + window.innerWidth/2,
                     'right' : window.innerWidth/2 - container.clientWidth/2};
                     
@@ -36,22 +30,66 @@ const IconHandler = (params) => {
             } else {
                 containerLeft = window.innerWidth/2;
             }
+        }
+
+        const setContainetX = e => {
+            const newLeft = containerLeft - mouseStart + mouseX;
+            if (newLeft < bounds.left && newLeft > bounds.right) {
+                console.log('set container x');
+                container.style.left = newLeft  + 'px';
+            }
+        }
+        
+        // DESKTOP MOUSE
+        const handleDocumentMouseDown = event => {
+            console.log('mDown');
+
+            setBoundsAndStartPos();
+
+            window.onmousemove = function(e) {
+                mouseX = e.x
+                console.log('move', mouseX);
+            }
 
             setIntervalID = setInterval(timeoutHandler, 25)
         };
         const handleDocumentMouseUp = event => {
+            console.log('mUp');
+            window.onmousemove = null;
             clearInterval(setIntervalID)
-            // gsap.to(container, {x:300, duration: 0.3})
+        }
+
+        // MOBILE TOUCH MOUSE
+        const handleTouchMove = e => {
+            mouseX = e.changedTouches[0].clientX;
+            setContainetX();
+            console.log('touchMove', mouseX);
+        }
+        const handleTouchStart = e => {
+            console.log('touchStart');
+            setBoundsAndStartPos();
+        }
+        const handleTouchEnd = e => {
+            console.log('touchEnd');
         }
       
-        container.addEventListener('mouseup', handleDocumentMouseUp);
+        window.addEventListener('mouseup', handleDocumentMouseUp);
         container.addEventListener('mousedown', handleDocumentMouseDown);
 
+        container.addEventListener('touchmove', handleTouchMove);
+        container.addEventListener('touchstart', handleTouchStart);
+        container.addEventListener('touchend', handleTouchEnd);
+
         return () => {
-            container.removeEventListener('mouseup', handleDocumentMouseUp);
+            window.removeEventListener('mouseup', handleDocumentMouseUp);
             container.removeEventListener('mousedown', handleDocumentMouseDown);
+
+            container.removeEventListener('touchmove', handleTouchMove);
+            container.removeEventListener('touchstart', handleTouchStart);
+            container.removeEventListener('touchend', handleTouchEnd);
+
             window.onmousemove = null;
-            clearTimeout(setIntervalID);
+            clearInterval(setIntervalID);
         };
     }, []);
 
