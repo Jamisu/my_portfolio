@@ -51,16 +51,14 @@
 
 @media (max-width: 768px) {
     .iconContainer {
-        // white-space: nowrap;
         // left: 0px;
         // transform: translate(0, -50%);
     }
 }
 @media (min-width: 768px) {
     .iconContainer {
-        // white-space: wrap !important;
-        // left: 50% !important;
-        // transform: translate(-50%, -50%) translate3d(0px, 0px, 0px) !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
     }
 }
 

@@ -5,6 +5,7 @@ import { Draggable } from "gsap/all";
 
 const IconHandler = (params) => {
     const {icons, selectedIndex, setSelectedIndex} = params;
+    let elemArr = [];
 
     useEffect(() => {
         let mouseStart;
@@ -15,16 +16,16 @@ const IconHandler = (params) => {
 
         let bounds = {};
 
-        const timeoutHandler = (e) => {
-            setContainetX();
+        const timeoutHandler = e => {
+            setContainerX();
         }
 
         const setBoundsAndStartPos = e => {
-            console.log('setBoundsAndStartPos');
+            console.log('setBoundsAndStartPos', e);
             bounds = {'left' : container.clientWidth/2 + window.innerWidth/2,
                     'right' : window.innerWidth/2 - container.clientWidth/2};
-                    
-            mouseStart = mouseX
+
+            mouseStart = mouseX = e.clientX || e.changedTouches[0].clientX;
             if (container.style.left) {
                 containerLeft = parseInt(container.style.left)
             } else {
@@ -32,48 +33,49 @@ const IconHandler = (params) => {
             }
         }
 
-        const setContainetX = e => {
+        const setContainerX = e => {
             const newLeft = containerLeft - mouseStart + mouseX;
-            if (newLeft < bounds.left && newLeft > bounds.right) {
-                console.log('set container x');
+             if (newLeft < bounds.left && newLeft > bounds.right) {
                 container.style.left = newLeft  + 'px';
-            }
+             }
         }
         
-        // DESKTOP MOUSE
-        const handleDocumentMouseDown = event => {
-            console.log('mDown');
-
-            setBoundsAndStartPos();
-
-            window.onmousemove = function(e) {
-                mouseX = e.x
-                console.log('move', mouseX);
+        /// DESKTOP MOUSE ///
+        const handleDocumentMouseDown = e => {
+            /// mouseX - |mouseStart| < 5px
+            if(window.innerWidth > container.clientWidth) {
+                return
             }
 
+            setBoundsAndStartPos(e);
+            console.log('mDown');   
+            window.addEventListener('mouseup', handleDocumentMouseUp);
+            window.onmousemove = function(e) {
+                mouseX = e.x
+            }
             setIntervalID = setInterval(timeoutHandler, 25)
         };
-        const handleDocumentMouseUp = event => {
+        const handleDocumentMouseUp = e => {
             console.log('mUp');
+            window.removeEventListener('mouseup', handleDocumentMouseUp);
             window.onmousemove = null;
             clearInterval(setIntervalID)
         }
 
-        // MOBILE TOUCH MOUSE
+        /// MOBILE TOUCH MOUSE ///
         const handleTouchMove = e => {
             mouseX = e.changedTouches[0].clientX;
-            setContainetX();
-            console.log('touchMove', mouseX);
         }
         const handleTouchStart = e => {
             console.log('touchStart');
-            setBoundsAndStartPos();
+            setBoundsAndStartPos(e);
+            setIntervalID = setInterval(timeoutHandler, 25)
         }
         const handleTouchEnd = e => {
             console.log('touchEnd');
+            clearInterval(setIntervalID)
         }
-      
-        window.addEventListener('mouseup', handleDocumentMouseUp);
+
         container.addEventListener('mousedown', handleDocumentMouseDown);
 
         container.addEventListener('touchmove', handleTouchMove);
@@ -93,17 +95,14 @@ const IconHandler = (params) => {
         };
     }, []);
 
-    
-
-    const clickHandler = (e) => {
+    const clickHandler = e => {
         setSelectedIndex(e);
-    }
-    const onHoverHandler = (e) => {
     }
 
     const iconList = () => {
-        return icons.map((icon, i) => <BigIcon key={i} ease="bounceIn" selectedId={selectedIndex} index={i} 
-        onClickHandler={clickHandler} onHoverHandler={onHoverHandler} icon={icon}/>);
+        elemArr = icons.map((icon, i) => <BigIcon key={i} ease="bounceIn" selectedId={selectedIndex} index={i} 
+            onClickHandler={clickHandler} onHoverHandler={e=>e} icon={icon}/>)
+        return elemArr;
     }
 
     return (
