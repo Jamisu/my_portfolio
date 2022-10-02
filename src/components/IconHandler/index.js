@@ -1,21 +1,20 @@
 import BigIcon from '../BigIcon';
 import { useEffect, useRef } from 'react';
-import { gsap } from "gsap";
-import { Draggable } from "gsap/all";
 
 const IconHandler = (params) => {
     const {icons, selectedIndex, setSelectedIndex} = params;
     let elemArr = [];
 
     useEffect(() => {
+        const container = document.getElementsByClassName('iconContainer')[0]
+        const iconsArrWidths = Array.from(container.children).map(e => e.getBoundingClientRect().width)
         let mouseStart;
-        let container = document.getElementsByClassName('iconContainer')[0]
         let containerLeft;
         let setIntervalID;
         let mouseX;
 
         let bounds = {};
-
+        
         const timeoutHandler = e => {
             setContainerX();
         }
@@ -42,7 +41,6 @@ const IconHandler = (params) => {
         
         /// DESKTOP MOUSE ///
         const handleDocumentMouseDown = e => {
-            /// mouseX - |mouseStart| < 5px
             if(window.innerWidth > container.clientWidth) {
                 return
             }
