@@ -4,6 +4,8 @@ import { useEffect, useRef } from 'react';
 const IconHandler = (params) => {
     const {icons, selectedIndex, setSelectedIndex} = params;
     let elemArr = [];
+    // FOR disabling standard onClick, after dragging
+    let wasDragged = false; 
 
     useEffect(() => {
         const container = document.getElementsByClassName('iconContainer')[0]
@@ -12,6 +14,7 @@ const IconHandler = (params) => {
         let containerLeft;
         let setIntervalID;
         let mouseX;
+        let resizeId;
 
         let bounds = {};
         
@@ -19,8 +22,11 @@ const IconHandler = (params) => {
             setContainerX();
         }
 
+        const getSelectedIconCenterX = e => {
+            return 
+        }
+
         const setBoundsAndStartPos = e => {
-            console.log('setBoundsAndStartPos', e);
             bounds = {'left' : container.clientWidth/2 + window.innerWidth/2,
                     'right' : window.innerWidth/2 - container.clientWidth/2};
 
@@ -35,18 +41,17 @@ const IconHandler = (params) => {
         const setContainerX = e => {
             const newLeft = containerLeft - mouseStart + mouseX;
              if (newLeft < bounds.left && newLeft > bounds.right) {
-                container.style.left = newLeft  + 'px';
+                setContainerLeft(newLeft);
              }
+        }
+
+        const setContainerLeft = nl => {
+            container.style.left = nl  + 'px';
         }
         
         /// DESKTOP MOUSE ///
         const handleDocumentMouseDown = e => {
-            if(window.innerWidth > container.clientWidth) {
-                return
-            }
-
-            setBoundsAndStartPos(e);
-            console.log('mDown');   
+            setBoundsAndStartPos(e);   
             window.addEventListener('mouseup', handleDocumentMouseUp);
             window.onmousemove = function(e) {
                 mouseX = e.x
@@ -54,7 +59,9 @@ const IconHandler = (params) => {
             setIntervalID = setInterval(timeoutHandler, 25)
         };
         const handleDocumentMouseUp = e => {
-            console.log('mUp');
+            // if(window.innerWidth < container.clientWidth) {
+            //     setContainerLeft(window.innerWidth/2 - iconsArrWidths[selectedIndex]);
+            // }
             window.removeEventListener('mouseup', handleDocumentMouseUp);
             window.onmousemove = null;
             clearInterval(setIntervalID)
@@ -65,16 +72,37 @@ const IconHandler = (params) => {
             mouseX = e.changedTouches[0].clientX;
         }
         const handleTouchStart = e => {
-            console.log('touchStart');
             setBoundsAndStartPos(e);
             setIntervalID = setInterval(timeoutHandler, 25)
         }
         const handleTouchEnd = e => {
-            console.log('touchEnd');
             clearInterval(setIntervalID)
         }
 
+        const handleResize = e => {
+            clearTimeout(resizeId);
+            resizeId = setTimeout(onResizeStop, 100);
+        }
+        const onResizeStop = e => {
+            console.log('onResizeStop');
+                if(window.innerWidth < container.clientWidth) {
+                    // on begining || center to selected
+                    setContainerLeft(container.clientWidth/2);
+                    // quick solution for not snapping icons
+                    // if Home and Abaout have introductory text initially selected 
+                    if(selectedIndex === iconsArrWidths.length) {
+                        console.log('none selected');
+                    } else {
+
+                    }
+                } else {
+                    setContainerLeft(window.innerWidth/2);
+                }
+        }
+        onResizeStop(null);
+
         container.addEventListener('mousedown', handleDocumentMouseDown);
+        window.addEventListener('resize', handleResize);
 
         container.addEventListener('touchmove', handleTouchMove);
         container.addEventListener('touchstart', handleTouchStart);
@@ -83,6 +111,7 @@ const IconHandler = (params) => {
         return () => {
             window.removeEventListener('mouseup', handleDocumentMouseUp);
             container.removeEventListener('mousedown', handleDocumentMouseDown);
+            window.removeEventListener('resize', handleResize);
 
             container.removeEventListener('touchmove', handleTouchMove);
             container.removeEventListener('touchstart', handleTouchStart);
@@ -91,10 +120,12 @@ const IconHandler = (params) => {
             window.onmousemove = null;
             clearInterval(setIntervalID);
         };
-    }, []);
+    }, [selectedIndex]);
 
     const clickHandler = e => {
-        setSelectedIndex(e);
+        if(!wasDragged) {
+            setSelectedIndex(e)
+        }
     }
 
     const iconList = () => {

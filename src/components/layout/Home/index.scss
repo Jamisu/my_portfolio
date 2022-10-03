@@ -49,19 +49,6 @@
     z-index: 3;
 }
 
-@media (max-width: 768px) {
-    .iconContainer {
-        left: 0px;
-        transform: translate(0, -50%);
-    }
-}
-@media (min-width: 768px) {
-    .iconContainer {
-        left: 50% !important;
-        transform: translate(-50%, -50%) !important;
-    }
-}
-
 .homeTextArea {
     top: 12%;
     position: absolute;
