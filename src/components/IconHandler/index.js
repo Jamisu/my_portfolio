@@ -5,7 +5,7 @@ const IconHandler = (params) => {
     const {icons, selectedIndex, setSelectedIndex} = params;
     let elemArr = [];
     // FOR disabling standard onClick, after dragging
-    let wasDragged = false; 
+    const wasDragged = useRef(false);
 
     useEffect(() => {
         const container = document.getElementsByClassName('iconContainer')[0]
@@ -64,12 +64,14 @@ const IconHandler = (params) => {
             clearInterval(setIntervalID)
 
             if(Math.abs(mouseStart - e.clientX) > 3) {
-                // wasDragged = true;
+                wasDragged.current = true;
                 return;
+            } else {
+                wasDragged.current = false;
             }
             if(selectedIndex < iconsArrWidths.length) {
                 setContainerLeft(window.innerWidth/2 - iconsArrWidths[selectedIndex]);
-            }            
+            }
         }
 
         /// MOBILE TOUCH MOUSE ///
@@ -125,16 +127,14 @@ const IconHandler = (params) => {
 
             window.onmousemove = null;
             clearInterval(setIntervalID);
+            wasDragged.current = false;
         };
     },[]);
 
     const clickHandler = e => {
-        console.log('wasDragged1', wasDragged);
-        if(!wasDragged) {
+        if(!wasDragged.current) {
            setSelectedIndex(e)
-            console.log('wasDragged2', wasDragged);
         }
-        console.log('wasDragged3', wasDragged);
     }
 
     const iconList = () => {
