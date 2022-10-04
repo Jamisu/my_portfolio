@@ -6,10 +6,12 @@ const IconHandler = (params) => {
     let elemArr = [];
     // FOR disabling standard onClick, after dragging
     const wasDragged = useRef(false);
+    const containerRef = useRef();
+    const iconsArrRef = useRef();
 
     useEffect(() => {
-        const container = document.getElementsByClassName('iconContainer')[0]
-        const iconsArrWidths = Array.from(container.children).map(e => e.getBoundingClientRect().width)
+        const container = containerRef.current = document.getElementsByClassName('iconContainer')[0]
+        const iconsArr = iconsArrRef.current = Array.from(container.children).map(e => e.getBoundingClientRect())
         let mouseStart;
         let containerLeft;
         let setIntervalID;
@@ -62,16 +64,18 @@ const IconHandler = (params) => {
             window.removeEventListener('mouseup', handleDocumentMouseUp);
             window.onmousemove = null;
             clearInterval(setIntervalID)
-
+            if(container.clientWidth < window.innerWidth) {
+                return;
+            }
             if(Math.abs(mouseStart - e.clientX) > 3) {
                 wasDragged.current = true;
                 return;
             } else {
                 wasDragged.current = false;
             }
-            if(selectedIndex < iconsArrWidths.length) {
-                setContainerLeft(window.innerWidth/2 - iconsArrWidths[selectedIndex]);
-            }
+            // if(selectedIndex < iconsArr.length) {
+            //     setContainerLeft(window.innerWidth/2 - iconsArr[selectedIndex].width);
+            // }
         }
 
         /// MOBILE TOUCH MOUSE ///
@@ -98,11 +102,13 @@ const IconHandler = (params) => {
                     setContainerLeft(container.clientWidth/2);
                     // quick solution for not snapping icons
                     // if Home and Abaout have introductory text initially selected 
-                    if(selectedIndex === iconsArrWidths.length) {
+                    if(selectedIndex === iconsArr.length) {
                         console.log('none selected');
+                    // snap/center selected icon
                     } else {
-
+                        snapToSelected();
                     }
+                // Center container
                 } else {
                     setContainerLeft(window.innerWidth/2);
                 }
@@ -131,10 +137,26 @@ const IconHandler = (params) => {
         };
     },[]);
 
-    const clickHandler = e => {
+    const clickHandler = selected => {
         if(!wasDragged.current) {
-           setSelectedIndex(e)
+           setSelectedIndex(selected)
+           if(containerRef.current.clientWidth > window.innerWidth) { snapToSelected(selected) }
         }
+    }
+
+    // let snapperTimeout;
+    const snapToSelected = e => {
+        // clearTimeout(snapperTimeout)
+        console.log('snapToSelected selected:', e, 'window', window.innerWidth, 'iconWidth', iconsArrRef.current[e],
+        'container', containerRef.current.clientWidth);
+
+
+        /* TODO - musze dać icon.offsetLeft! */
+
+
+        containerRef.current.style.left = 
+        window.innerWidth/2 + containerRef.current.clientWidth/2
+        + iconsArrRef.current[e].left + iconsArrRef.current[e].width/2 + 'px';
     }
 
     const iconList = () => {
