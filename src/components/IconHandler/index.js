@@ -18,10 +18,8 @@ const IconHandler = (params) => {
         let mouseX;
         let resizeId;
         let bounds = {};
-
-        console.log('useEFFECT reload')
         
-        const timeoutHandler = e => {
+        const dragHandler = e => {
             setContainerX();
         }
 
@@ -57,14 +55,14 @@ const IconHandler = (params) => {
                 window.onmousemove = function(e) {
                     mouseX = e.x
                 }  
-                setIntervalID = setInterval(timeoutHandler, 25)
+                setIntervalID = setInterval(dragHandler, 25)
             }
         };
         const handleDocumentMouseUp = e => {
             window.removeEventListener('mouseup', handleDocumentMouseUp);
             window.onmousemove = null;
             clearInterval(setIntervalID)
-            if(container.clientWidth < window.innerWidth) {
+            if(!isContentWide()) {
                 return;
             }
             if(Math.abs(mouseStart - e.clientX) > 3) {
@@ -73,9 +71,6 @@ const IconHandler = (params) => {
             } else {
                 wasDragged.current = false;
             }
-            // if(selectedIndex < iconsArr.length) {
-            //     setContainerLeft(window.innerWidth/2 - iconsArr[selectedIndex].width);
-            // }
         }
 
         /// MOBILE TOUCH MOUSE ///
@@ -84,30 +79,21 @@ const IconHandler = (params) => {
         }
         const handleTouchStart = e => {
             setBoundsAndStartPos(e);
-            setIntervalID = setInterval(timeoutHandler, 25)
+            setIntervalID = setInterval(dragHandler, 25)
         }
         const handleTouchEnd = e => {
             clearInterval(setIntervalID)
         }
 
         const handleResize = e => {
-            console.log('resizing');
             clearTimeout(resizeId);
             resizeId = setTimeout(onResizeStop, 100);
         }
         const onResizeStop = e => {
-            console.log('onResizeStop', selectedIndex,  iconsArr.length);
-                if(window.innerWidth < container.clientWidth) {
-                    // on begining || center to selected
+                if(isContentWide()) {
+                    // center to selected || center to client center
                     setContainerLeft(container.clientWidth/2);
-                    // quick solution for not snapping icons
-                    // if Home and Abaout have introductory text initially selected 
-                    if(selectedIndex === iconsArr.length) {
-                        console.log('none selected');
-                    // snap/center selected icon
-                    } else {
-                        snapToSelected(selectedIndex);
-                    }
+                    snapToSelected();
                 // Center container
                 } else {
                     setContainerLeft(window.innerWidth/2);
@@ -135,22 +121,26 @@ const IconHandler = (params) => {
             clearInterval(setIntervalID);
             wasDragged.current = false;
         };
-    },[]);
+    });
+
+    const isContentWide = e => {
+        return containerRef.current.clientWidth > window.innerWidth;
+    }
 
     const clickHandler = selected => {
         if(!wasDragged.current) {
            setSelectedIndex(selected)
-           if(containerRef.current.clientWidth > window.innerWidth) { snapToSelected(selected) }
+           if(isContentWide()) { snapToSelected(selected) }
         }
     }
 
-    // let snapperTimeout;
-    const snapToSelected = e => {
-        // clearTimeout(snapperTimeout)
-        console.log('snapToSelected', e);
+    const snapToSelected = (si = selectedIndex) => {
+        if(si === iconsArrRef.current.length) {
+            return;
+        }
         containerRef.current.style.left = 
-        window.innerWidth/2 + containerRef.current.clientWidth/2
-        - (iconsArrRef.current[e].offsetLeft + iconsArrRef.current[e].getBoundingClientRect().width/2) + 'px';
+        window.innerWidth/2 + containerRef.current.clientWidth/2 - (iconsArrRef.current[si].offsetLeft +
+            iconsArrRef.current[si].getBoundingClientRect().width/2) + 'px';
     }
 
     const iconList = () => {
