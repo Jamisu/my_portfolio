@@ -11,7 +11,7 @@ const IconHandler = (params) => {
 
     useEffect(() => {
         const container = containerRef.current = document.getElementsByClassName('iconContainer')[0]
-        const iconsArr = iconsArrRef.current = Array.from(container.children).map(e => e.getBoundingClientRect())
+        const iconsArr = iconsArrRef.current = Array.from(container.children)
         let mouseStart;
         let containerLeft;
         let setIntervalID;
@@ -96,7 +96,7 @@ const IconHandler = (params) => {
             resizeId = setTimeout(onResizeStop, 100);
         }
         const onResizeStop = e => {
-            console.log('onResizeStop');
+            console.log('onResizeStop', selectedIndex,  iconsArr.length);
                 if(window.innerWidth < container.clientWidth) {
                     // on begining || center to selected
                     setContainerLeft(container.clientWidth/2);
@@ -106,7 +106,7 @@ const IconHandler = (params) => {
                         console.log('none selected');
                     // snap/center selected icon
                     } else {
-                        snapToSelected();
+                        snapToSelected(selectedIndex);
                     }
                 // Center container
                 } else {
@@ -147,16 +147,10 @@ const IconHandler = (params) => {
     // let snapperTimeout;
     const snapToSelected = e => {
         // clearTimeout(snapperTimeout)
-        console.log('snapToSelected selected:', e, 'window', window.innerWidth, 'iconWidth', iconsArrRef.current[e],
-        'container', containerRef.current.clientWidth);
-
-
-        /* TODO - musze dać icon.offsetLeft! */
-
-
+        console.log('snapToSelected', e);
         containerRef.current.style.left = 
         window.innerWidth/2 + containerRef.current.clientWidth/2
-        + iconsArrRef.current[e].left + iconsArrRef.current[e].width/2 + 'px';
+        - (iconsArrRef.current[e].offsetLeft + iconsArrRef.current[e].getBoundingClientRect().width/2) + 'px';
     }
 
     const iconList = () => {
