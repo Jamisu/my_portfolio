@@ -2,7 +2,7 @@
   "__comment__": "homepage: https://jamisu.github.io/my_portfolio/",
   "homepage": "https://jamisu.github.io/my_portfolio/",
   "name": "portfolio",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
