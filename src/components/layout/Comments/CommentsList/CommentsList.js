@@ -1,8 +1,9 @@
 import CommentListItem from './CommentListItem/CommentListItem'
 
 const CommentsList = ({comments}) => {
-    console.log('comments', comments);
-    return <>{comments.map((comm, i) => <CommentListItem key={i} message={comm}/>)}</>
+    return <ul className="comments_list">
+        {comments.map((comm, i) => <CommentListItem key={i} message={comm}/>)}
+    </ul>
 }
 
 export default CommentsList
