@@ -1,4 +1,18 @@
 li {
     display: block;
     color: white;
+    align-items: left;
+    max-height: 136px;
+    height: 128px;
+    background-color: rgba($color: #000000, $alpha: .05);
+    margin-bottom: 10px;
+
+    p {
+       margin:2px; 
+       color: #BBBBBB ;
+    }
+
+    h3 {
+        margin: 2px;
+    }
 }

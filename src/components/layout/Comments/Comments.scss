@@ -1,11 +1,17 @@
 .page .comments {
     color: white;
-    width:auto;
+    max-width: 568px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 50%;
+    transform: translate(-50%, 0);
 }
 
 .page .comments_top_layer {
-    // // display: flex;
-    // display: inline-block;
-    // flex-direction:row;
-    // // justify-content: space-between;
+    display: flex;
+    flex-direction:row;
+    justify-content: space-between;
+    text-align: center;
 }

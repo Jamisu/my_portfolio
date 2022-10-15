@@ -9,8 +9,8 @@ import { useEffect, useState } from 'react';
 const Comments = () => {
     const url = 'https://62cbcfcd8042b16aa7c2d987.mockapi.io/blog/api/comments'
     const [data, setData] = useState([]);
-    let itemLimit = 6;
-    let page = 3;
+    let itemLimit = 4;
+    let page = 0;
     /* 
         show preloader
         load data 

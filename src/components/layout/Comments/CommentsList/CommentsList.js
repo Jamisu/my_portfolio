@@ -1,9 +1,10 @@
 import CommentListItem from './CommentListItem/CommentListItem'
+import './CommentsList.scss'
 
 const CommentsList = ({comments}) => {
-    return <ul className="comments_list">
+    return <div className="comments_list">
         {comments.map((comm, i) => <CommentListItem key={i} message={comm}/>)}
-    </ul>
+    </div>
 }
 
 export default CommentsList
