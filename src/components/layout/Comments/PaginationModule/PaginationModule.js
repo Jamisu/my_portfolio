@@ -1,6 +1,5 @@
 const PaginationModule = () => {
-
-    return <div></div>
+    return <>Pagination</>
 }
 
 export default PaginationModule
