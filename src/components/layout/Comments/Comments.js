@@ -4,28 +4,30 @@ import PaginationModule from './PaginationModule/PaginationModule'
 
 import './Comments.scss'
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useOutletContext } from "react-router-dom";
 import SortButton from "./SortButton/SortButton";
 
 const Comments = () => {
     const [dayMode] = useOutletContext();
     const urlBase = 'https://62cbcfcd8042b16aa7c2d987.mockapi.io/blog/api/comments?sortBy=createdAt&order='
-    const [data, setData] = useState([]);
-    const [sort, setSort] = useState('asc');
+    const [data, setData] = useState([]);   // trimmed data
+    const dataLength = useRef(0);
+    const [sort, setSort] = useState('desc');
+    const [page, setPage] = useState(0);
     let itemLimit = 4;
-    let page = 0;
     /* 
         show preloader
         load data 
         hide preloader
-        show CommentsList + PaginationModule + Comment button
+        show CommentsList + (PaginationModule + Comment button)
     */
 
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch(urlBase + sort);
             const newData = await response.json();
+            dataLength.current = newData.length;
             setData(newData.slice(page * itemLimit, (page + 1) * itemLimit));
         };
         fetchData();
@@ -38,7 +40,7 @@ const Comments = () => {
                 </div>
                 
                 <CommentsList comments={data}/>
-                <PaginationModule />
+                <PaginationModule page={page + 1} setPage={setPage} pageSize={itemLimit} dataLength={dataLength.current}/>
             </div>
 }
 
