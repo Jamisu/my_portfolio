@@ -1,0 +1,14 @@
+.sort_button {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer; 
+}
+
+.sort_button div {
+    color: white;
+    font-size: 15px;
+    padding-right: 10px;
+    &.active {
+        font-weight: bold;
+    }
+}
