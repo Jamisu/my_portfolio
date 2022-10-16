@@ -1,0 +1,87 @@
+.add_com_top_layer {
+    max-width: 568px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+
+    & .add_com_title {
+        
+    }
+    & .add_com_button {
+        color:white;
+        font-size: 16px;
+        font-weight: bold;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        width: 32px;
+        height: 32px;
+        background-color: #00BCD5;
+    }
+}
+
+.add_com_dash_lines {
+    & .add_com_dash_one {
+        display: block;
+        width: 70px;
+        border-bottom: 1px solid white;
+    }
+    & .add_com_dash_two {
+        display: block;
+        width: 35px;
+        height: 5px;
+        border-bottom: 1px solid white;
+    }
+}
+
+.add_com_input {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+    & .add_com_name {
+        display: block;
+        width: 220px;
+        height: 30px;
+        border: 1px solid white;
+        background-color:rgba(0, 0, 0, 0);
+        color:white;
+    }
+
+    & .add_com_email {
+        display: block;
+        width: 280px;
+        height: 30px;
+        border: 1px solid white;
+        background-color:rgba(0, 0, 0, 0);
+        color:white;
+    }
+}
+.add_com_bottom_layer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+
+    .add_com_content {
+        display: block;
+        width: auto;
+        height: 100px;
+        border: 1px solid white;
+        background-color:rgba(0, 0, 0, 0);
+        color:white;
+        resize: none;
+    }
+    
+    .add_com_submit {
+        color: white;
+        font-size: medium;
+        background-color: #00BCD5;
+        height: 50px;
+        width: 180px;
+        margin-top: 25px;;
+        cursor: pointer;
+        border-width: 0;
+    }
+}

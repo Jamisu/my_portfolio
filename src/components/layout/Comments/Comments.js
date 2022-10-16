@@ -48,8 +48,8 @@ const Comments = () => {
                 </div> 
             </div>
             ) : (
-            <div>
-                <AddComment />
+            <div className='comments'>
+                <AddComment closePanel={e=>setAddComment(false)}/>
             </div>
         ))        
 }
