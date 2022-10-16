@@ -16,20 +16,22 @@
     line-height: 1.43;
     font-size: 13px;
     min-width: 32px;
+    background-color: rgba(0, 188, 213, .1);
 
-    &.dots:hover {
+    &.dots {
       background-color: transparent;
       cursor: default;
+      &.dots:hover {
+        background-color: transparent;
+        cursor: default;
+      }
     }
     &:hover {
       background-color: #00BCD5;
       cursor: pointer;
     }
-
     &.selected {
       background-color: #00BCD5;
-    }
-
-    
+    }    
   }
 }

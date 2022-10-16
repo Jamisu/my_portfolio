@@ -16,3 +16,20 @@
     justify-content: space-between;
     align-items: baseline;
 }
+
+.page .comments_bottom_layer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+
+    & .comment_button {
+        color: white;
+        font-size: medium;
+        background-color: #00BCD5;
+        min-height: 32px;
+        min-width: 100px;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+}
