@@ -13,7 +13,7 @@ const AddComment = ({closePanel}) => {
           };
           fetch('https://62cbcfcd8042b16aa7c2d987.mockapi.io/blog/api/comments', requestOptions)
               .then(response => response.json())
-              .then(ret_data => console.log("returnData", ret_data));
+              .then(ret_data => {console.log("returnData", ret_data); onClose()});
     };
 
     const onClose = e => {

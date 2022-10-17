@@ -29,10 +29,6 @@ const Comments = () => {
         fetchData();
     }, [itemLimit, page, sort]);
 
-    const onAddComment = e => {
-        setAddComment(true)
-    }
-
     return  (
         !addComment ? (
             <div className='comments'>
@@ -44,12 +40,12 @@ const Comments = () => {
                 <CommentsList comments={data}/>
                 <div className="comments_bottom_layer">
                     <PaginationModule page={page} setPage={setPage} pageSize={itemLimit} dataLength={dataLength.current}/>
-                    <button className="comment_button" onClick={onAddComment}>Comment</button>
+                    <button className="comment_button" onClick={e=>setAddComment(true)}>Comment</button>
                 </div> 
             </div>
             ) : (
             <div className='comments'>
-                <AddComment closePanel={e=>setAddComment(false)}/>
+                <AddComment closePanel={e=>{setPage(1); setAddComment(false)}}/>
             </div>
         ))        
 }
