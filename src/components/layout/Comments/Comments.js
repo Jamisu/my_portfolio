@@ -19,15 +19,23 @@ const Comments = () => {
     const [addComment, setAddComment] = useState(false);
     let itemLimit = 4;
 
-    useEffect(() => {
+    useEffect(() => {        
         const fetchData = async () => {
             const response = await fetch(urlBase + sort);
             const newData = await response.json();
             dataLength.current = newData.length;
             setData(newData.slice((page - 1) * itemLimit, page * itemLimit));
         };
+        calculateMaxItemLimit();
         fetchData();
     }, [itemLimit, page, sort]);
+
+    // TODO - lift resize state to layout, pass in OutletContext for otimisation
+    const calculateMaxItemLimit = () => {
+        // vertical occupied space - (menu + pagination + footer).height
+        const verticalSpace = 350;
+        itemLimit = Math.floor((window.innerHeight - verticalSpace) / 120)
+    }
 
     return  (
         !addComment ? (
