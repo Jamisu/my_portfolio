@@ -17,25 +17,29 @@ const Comments = () => {
     const [sort, setSort] = useState('desc');
     const [page, setPage] = useState(1);
     const [addComment, setAddComment] = useState(false);
-    let itemLimit = 4;
+    const itemLimit = useRef(4);
+
+    // TODO - lift resize state to layout, pass in OutletContext for otimisation
 
     useEffect(() => {        
         const fetchData = async () => {
             const response = await fetch(urlBase + sort);
             const newData = await response.json();
             dataLength.current = newData.length;
-            setData(newData.slice((page - 1) * itemLimit, page * itemLimit));
+            setData(newData.slice((page - 1) * itemLimit.current, page * itemLimit.current));
         };
+        const calculateMaxItemLimit = () => {
+            // vertical occupied space - (menu + pagination + footer).height
+            const verticalSpace = 350;
+            const itemHeight = 120;
+            itemLimit.current = Math.floor((window.innerHeight - verticalSpace) / itemHeight)
+        }
         calculateMaxItemLimit();
         fetchData();
     }, [itemLimit, page, sort]);
 
-    // TODO - lift resize state to layout, pass in OutletContext for otimisation
-    const calculateMaxItemLimit = () => {
-        // vertical occupied space - (menu + pagination + footer).height
-        const verticalSpace = 350;
-        itemLimit = Math.floor((window.innerHeight - verticalSpace) / 120)
-    }
+    
+    
 
     return  (
         !addComment ? (
@@ -47,7 +51,7 @@ const Comments = () => {
                 
                 <CommentsList comments={data}/>
                 <div className="comments_bottom_layer">
-                    <PaginationModule page={page} setPage={setPage} pageSize={itemLimit} dataLength={dataLength.current}/>
+                    <PaginationModule page={page} setPage={setPage} pageSize={itemLimit.current} dataLength={dataLength.current}/>
                     <button className="comment_button" onClick={e=>setAddComment(true)}>Comment</button>
                 </div> 
             </div>

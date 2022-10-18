@@ -1,7 +1,7 @@
 import Pagination from './Pagination';
 
 const PaginationModule = ({page, setPage, pageSize, dataLength}) => {
-    console.log('init Pagination', dataLength);
+    console.log('init Pagination', dataLength, pageSize);
     return <Pagination
         className="pagination-bar"
         currentPage={page}
