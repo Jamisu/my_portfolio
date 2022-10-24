@@ -52,7 +52,7 @@ const AddComment = ({closePanel}) => {
             </div>
             <div className="add_com_bottom_layer">
                 <textarea className="add_com_content" {...register("content", {required: true})} placeholder="Your Message" />
-                <input className="add_com_submit" type="submit" />
+                <button className="add_com_submit" type="submit">Submit</button>
             </div>
             
         </form>
