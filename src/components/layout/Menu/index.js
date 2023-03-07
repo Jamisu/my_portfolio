@@ -90,14 +90,14 @@ const Menu = (props) => {
               <FontAwesomeIcon icon={faEnvelope} />
             </NavLink>
 
-            <NavLink
+            {/* <NavLink
               activeclassname="active"
               className="comments-link"
               to="/my_portfolio/comments"
               onMouseEnter={showTool} onMouseLeave={hideTool}
               id='4'>
               <FontAwesomeIcon icon={faComment} />
-            </NavLink>
+            </NavLink> */}
           </nav>
 
           {/* --LINKS */}
