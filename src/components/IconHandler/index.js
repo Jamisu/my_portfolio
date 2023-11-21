@@ -11,7 +11,6 @@ const IconHandler = (params) => {
 
     useEffect(() => {
         const container = containerRef.current = document.getElementsByClassName('iconContainer')[0]
-        const iconsArr = iconsArrRef.current = Array.from(container.children)
         let mouseStart;
         let containerLeft;
         let setIntervalID;

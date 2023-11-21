@@ -8,10 +8,10 @@ const About = () => {
     const [dayMode] = useOutletContext();
     const [selectedIndex, setSelectedIndex] = useState(8);
     const icons = [faReact, faJsSquare, faCss3, faHtml5, faSass, faPython, faJava, faAngular];
-    const languageText = ['React:', 'JS:', 'CSS:', 'HTML:', 'SASS:', 'Python:', 'Java:', 'Angular:'];
+    const languageText = ['React:', 'JS/TS:', 'CSS:', 'HTML:', 'SASS:', 'Python:', 'Java:', 'Angular:'];
     const aboutText = [
-    "Intermediate",
-    "Intermediate",
+    "Advanced",
+    "Advanced",
     "Intermediate",
     "Advanced",
     "Intermediate",
