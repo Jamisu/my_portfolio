@@ -2,7 +2,7 @@ import './index.scss'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLinkedin, faGithub, faBehance, faSoundcloud } from '@fortawesome/free-brands-svg-icons'
-import { faComment } from '@fortawesome/free-solid-svg-icons'
+// import { faComment } from '@fortawesome/free-solid-svg-icons'
 import {
   faHome,
   faUser,
