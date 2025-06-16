@@ -1,0 +1,34 @@
+{
+    "images" : [
+        {
+            "image" : "mhk.jpg",
+            "thumb" : "mhk_thumb.jpg",
+            "desc" : "Twenty touchscreen multimedia stands for History Museum Of Crakow",
+            "tech" : "Adobe Flash Standalone, AS3"
+        },
+        {
+            "image" : "rodo.jpg",
+            "thumb" : "rodo_thumb.jpg",
+            "desc" : "Rodo vendors consent panel",
+            "tech" : "preact.js, html, css, python"
+        },
+        {
+            "image" : "webckm.jpg",
+            "thumb" : "webckm_thumb.jpg",
+            "desc" : "Integrated CMS platform publishing articles with video",
+            "tech" : "react, redux, AWS"
+        },
+        {
+            "image" : "video.jpg",
+            "thumb" : "video_thumb.jpg",
+            "desc" : "Custom Onet video player (discontinued)",
+            "tech" : "ImaSdk, vanilla js, pureMVC"
+        },
+        {
+            "image" : "flash.jpg",
+            "thumb" : "flash_thumb.jpg",
+            "desc" : "Selected Flash projects and games. (More under Beehance link)",
+            "tech" : "Adobe Flash, AS3, HTML"
+        }
+    ]
+}
