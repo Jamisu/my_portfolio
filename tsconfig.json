@@ -1,11 +1,16 @@
 {
   "compilerOptions": {
-    "jsx": "react",
     "target": "es6",
     "module": "commonjs",
-    "strict": true,
-    "esModuleInterop": true
+    "jsx": "react",
+    "allowJs": true,
+    "checkJs": false,
+    "strict": false,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "rootDir": "src",
+    "outDir": "dist"
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules"]
 }
