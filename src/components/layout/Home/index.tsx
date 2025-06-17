@@ -1,3 +1,4 @@
+import React from 'react';
 import './index.scss'
 import { faKitchenSet, faPersonHiking, faBiking, faCode, faMusic } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react';
@@ -5,7 +6,7 @@ import { useOutletContext } from "react-router-dom";
 import IconHandler from '../../IconHandler';
 
 const Home = () => {
-    const [dayMode] = useOutletContext();
+    const [dayMode] = useOutletContext<[string]>();
     const [selectedIndex, setSelectedIndex] = useState(5);
     const icons = [faPersonHiking, faBiking, faCode, faKitchenSet, faMusic];
     const homeText1 = ["I Love Mountain Hicking", "Cycling, cycling, ever cycling", "Coding is good for your brain",
