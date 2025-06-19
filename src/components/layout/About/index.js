@@ -27,9 +27,7 @@ const About = () => {
                 <div>{languageText[selectedIndex]}</div>
                 <div>{aboutText[selectedIndex]}</div>
             </div>
-            <div className={'iconContainer'} >
-                <IconHandler icons={icons} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex}/>
-            </div>
+            <IconHandler icons={icons} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex}/>
     </div>)
 }
 

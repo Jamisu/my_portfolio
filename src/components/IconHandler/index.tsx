@@ -33,9 +33,14 @@ const IconHandler = (params: IconHandlerProps) => {
             return;
         }
         
-        containerRef.current.style.left = 
-        window.innerWidth/2 + containerRef.current.clientWidth/2 - ((iconsArrRef.current[si] as HTMLElement).offsetLeft +
-            iconsArrRef.current[si].getBoundingClientRect().width/2) + 'px';
+        const icon = iconsArrRef.current[si];
+        const iconRect = icon.getBoundingClientRect();
+        const iconCenter = iconRect.left + iconRect.width / 2;
+        const delta = window.innerWidth / 2 - iconCenter;
+        const currentContainerLeft = parseInt(containerRef.current.style.left || '0', 10);
+        const newContainerLeft = currentContainerLeft + delta;
+
+        containerRef.current.style.left = newContainerLeft + 'px';
     }
 
     useEffect(() => {
