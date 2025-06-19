@@ -7,7 +7,7 @@ interface BigIconProps {
   index: number;
   icon: any;
   size?: any;
-  color?: any;
+  color?: string;
   onClickHandler: (index: number) => void;
   onHoverHandler: (index: number) => void;
   selectedId: number;
