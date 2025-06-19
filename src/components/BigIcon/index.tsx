@@ -5,8 +5,9 @@ import { FontAwesomeIcon, FontAwesomeIconProps as Props } from '@fortawesome/rea
 interface BigIconProps {
   ease: string;
   index: number;
-  icon: any; // Replace 'any' with the actual type of your icon, if possible
+  icon: any;
   size?: any;
+  color?: any;
   onClickHandler: (index: number) => void;
   onHoverHandler: (index: number) => void;
   selectedId: number;
@@ -17,6 +18,7 @@ const BigIcon: React.FC<BigIconProps> = ({
   index,
   icon,
   size = '10x',
+  color = '#ffff00',
   onClickHandler,
   onHoverHandler,
   selectedId,

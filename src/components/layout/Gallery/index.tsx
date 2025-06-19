@@ -8,9 +8,9 @@ const Gallery = () => {
     const baseUrl = './images/';
     const url = baseUrl + 'gallery.json';
 
-    const [dayMode] = useOutletContext();
+    const [dayMode] = useOutletContext<string>();
 
-    const [contentData, setData] = useState();
+    const [contentData, setData] = useState<any>();
     const [currentImage, setCurrent] = useState(0);
     const [animationClass, setAnimationClass] = useState('imgFadeIn');
     const [dimensions, setDimensions] = React.useState({
@@ -36,7 +36,7 @@ const Gallery = () => {
         }, 100);
 
         window.addEventListener("resize", debouncedHandleResize);
-        return (e) => {
+        return () => {
             window.removeEventListener("resize", debouncedHandleResize);
         };
     });
