@@ -60,7 +60,7 @@ const IconHandler = (params: IconHandlerProps) => {
             setContainerX();
         };
     
-        const setBoundsAndStartPos = (e) => {
+        const setBoundsAndStartPos = (e: any) => {
             bounds = {
                 'left': container.clientWidth / 2 + window.innerWidth / 2,
                 'right': window.innerWidth / 2 - container.clientWidth / 2
@@ -81,13 +81,13 @@ const IconHandler = (params: IconHandlerProps) => {
             }
         };
     
-        const setContainerLeft = (nl) => {
+        const setContainerLeft = (nl: number) => {
             container.style.left = nl + 'px';
             console.log('container.style.left', container.style.left);
         };
     
         // DESKTOP MOUSE //
-        const handleDocumentMouseDown = (e) => {
+        const handleDocumentMouseDown = (e: any) => {
             setBoundsAndStartPos(e);
             window.addEventListener('mouseup', handleDocumentMouseUp);
             if (window.innerWidth < container.clientWidth) {
@@ -97,7 +97,7 @@ const IconHandler = (params: IconHandlerProps) => {
                 setIntervalID = setInterval(dragHandler, 25);
             }
         };
-        const handleDocumentMouseUp = (e) => {
+        const handleDocumentMouseUp = (e: any) => {
             window.removeEventListener('mouseup', handleDocumentMouseUp);
             window.onmousemove = null;
             clearInterval(setIntervalID);
@@ -113,22 +113,22 @@ const IconHandler = (params: IconHandlerProps) => {
         };
     
         // MOBILE TOUCH MOUSE //
-        const handleTouchMove = (e) => {
+        const handleTouchMove = (e: any) => {
             mouseX = e.changedTouches[0].clientX;
         };
-        const handleTouchStart = (e) => {
+        const handleTouchStart = (e: any) => {
             setBoundsAndStartPos(e);
             setIntervalID = setInterval(dragHandler, 25);
         };
-        const handleTouchEnd = (e) => {
+        const handleTouchEnd = (e: any) => {
             clearInterval(setIntervalID);
         };
     
-        const handleResize = (e) => {
+        const handleResize = (e: any) => {
             clearTimeout(resizeId);
             resizeId = setTimeout(onResizeStop, 100);
         };
-        const onResizeStop = (e) => {
+        const onResizeStop = (e: any) => {
             if (isContentWide()) {
                 // center to selected || center to client center
                 setContainerLeft(container.clientWidth / 2);
