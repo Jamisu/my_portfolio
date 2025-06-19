@@ -1,4 +1,5 @@
 import './index.scss'
+import React from 'react';
 
 const Footer = (props) => {
     const day = props.mode;

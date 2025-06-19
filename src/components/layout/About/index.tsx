@@ -1,11 +1,12 @@
 import './index.scss'
+import React from 'react';
 import { faReact, faJsSquare, faCss3, faHtml5, faSass, faPython, faJava, faAngular } from '@fortawesome/free-brands-svg-icons'
 import { useState } from 'react';
 import { useOutletContext } from "react-router-dom";
 import IconHandler from '../../IconHandler';
 
 const About = () => {
-    const [dayMode] = useOutletContext();
+    const [dayMode] = useOutletContext<string>();
     const [selectedIndex, setSelectedIndex] = useState(8);
     const icons = [faReact, faJsSquare, faCss3, faHtml5, faSass, faPython, faJava, faAngular];
     const languageText = ['React:', 'JS/TS:', 'CSS:', 'HTML:', 'SASS:', 'Python:', 'Java:', 'Angular:'];
