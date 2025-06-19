@@ -26,9 +26,7 @@ const Home = () => {
                 </p>
             </div>
             
-            <div className='iconContainer' >
-                <IconHandler icons={icons} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex}/>
-            </div>
+            <IconHandler icons={icons} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex}/>
 
             <div className='homeTextArea'>
                 <span>{homeText1[selectedIndex]}</span>

@@ -1,54 +1,57 @@
+import React from 'react';
 import BigIcon from '../BigIcon';
 import { useEffect, useRef } from 'react';
 
-const IconHandler = (params) => {
+interface IconHandlerProps {
+    icons: any;
+    selectedIndex: number;
+    setSelectedIndex: (index: number) => void;
+}
+
+const IconHandler = (params: IconHandlerProps) => {
     const {icons, selectedIndex, setSelectedIndex} = params;
-    let elemArr = [];
     // FOR disabling standard onClick, after dragging
     const wasDragged = useRef(false);
-    const containerRef = useRef();
-    const iconsArrRef = useRef();
+    const containerRef = useRef<HTMLDivElement>(null);
+    const iconsArrRef = useRef<Element[]>();
 
-    const isContentWide = e => {
+    const isContentWide = () => {
         return containerRef.current.clientWidth > window.innerWidth;
     }
 
-    const clickHandler = selected => {
+    const clickHandler = (selected: number) => {
         if(!wasDragged.current) {
            setSelectedIndex(selected)
            if(isContentWide()) { snapToSelected(selected) }
         }
     }
 
-    const snapToSelected = (si = selectedIndex) => {
+    const snapToSelected = (si: number = selectedIndex) => {
         console.log('si ' + si);
 
-        if(si === iconsArrRef.current.length) {
+        if (!iconsArrRef.current || si >= iconsArrRef.current.length || !containerRef.current) {
             return;
         }
         
-        
         containerRef.current.style.left = 
-        window.innerWidth/2 + containerRef.current.clientWidth/2 - (iconsArrRef.current[si].offsetLeft +
+        window.innerWidth/2 + containerRef.current.clientWidth/2 - ((iconsArrRef.current[si] as HTMLElement).offsetLeft +
             iconsArrRef.current[si].getBoundingClientRect().width/2) + 'px';
     }
 
-    const iconList = () => {
-        elemArr = icons.map((icon, i) => <BigIcon key={i} ease="bounceIn" selectedId={selectedIndex} index={i} 
-            onClickHandler={clickHandler} onHoverHandler={e=>e} icon={icon}/>)
-        return elemArr;
-    }
-
     useEffect(() => {
-        const container = containerRef.current = document.getElementsByClassName('iconContainer')[0];
+        const container = containerRef.current;
+        if (!container) {
+            return;
+        }
+        iconsArrRef.current = Array.from(container.children);
         let mouseStart;
         let containerLeft;
         let setIntervalID;
         let mouseX;
         let resizeId;
-        let bounds = {};
+        let bounds: { left: number; right: number } = { left: 0, right: 0 };
     
-        const dragHandler = (e) => {
+        const dragHandler = () => {
             setContainerX();
         };
     
@@ -66,7 +69,7 @@ const IconHandler = (params) => {
             }
         };
     
-        const setContainerX = (e) => {
+        const setContainerX = () => {
             const newLeft = containerLeft - mouseStart + mouseX;
             if (newLeft < bounds.left && newLeft > bounds.right) {
                 setContainerLeft(newLeft);
@@ -140,24 +143,35 @@ const IconHandler = (params) => {
         container.addEventListener('touchend', handleTouchEnd);
     
         return () => {
+            if(container) {
+                container.removeEventListener('mousedown', handleDocumentMouseDown);
+                container.removeEventListener('touchmove', handleTouchMove);
+                container.removeEventListener('touchstart', handleTouchStart);
+                container.removeEventListener('touchend', handleTouchEnd);
+            }
             window.removeEventListener('mouseup', handleDocumentMouseUp);
-            container.removeEventListener('mousedown', handleDocumentMouseDown);
             window.removeEventListener('resize', handleResize);
-    
-            container.removeEventListener('touchmove', handleTouchMove);
-            container.removeEventListener('touchstart', handleTouchStart);
-            container.removeEventListener('touchend', handleTouchEnd);
     
             window.onmousemove = null;
             clearInterval(setIntervalID);
             wasDragged.current = false;
         };
-    });
-
-    
+    }, [icons, selectedIndex]);
 
     return (
-        iconList()
+        <div className='iconContainer' ref={containerRef}>
+            {icons.map((icon, i) => (
+                <BigIcon
+                    key={i}
+                    ease="bounceIn"
+                    selectedId={selectedIndex}
+                    index={i}
+                    onClickHandler={clickHandler}
+                    onHoverHandler={(e) => e}
+                    icon={icon}
+                />
+            ))}
+        </div>
     )
 }
 
