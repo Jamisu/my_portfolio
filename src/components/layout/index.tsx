@@ -2,7 +2,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom'
 import { useState } from 'react';
 import Menu from '../layout/Menu'
-import Footer from '../layout/Footer'
+import Footer from './Footer'
 
 const Layout = () => {
     const [dayMode, setDayNightState] = useState('day');
